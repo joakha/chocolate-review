@@ -3,6 +3,7 @@ import cors from "cors"
 import connectToDB from "./mongoDB/connectToDB.js";
 import dotenv from "dotenv";
 import reviewRouter from "./routes/reviewRouter.js"
+import typeRouter from "./routes/typeRouter.js";
 
 //making sure environment variables load properly
 dotenv.config()
@@ -28,6 +29,7 @@ connectToDB(mongoDBURL);
 
 //setup routers
 chocolateReviewApp.use("/api/reviews", reviewRouter);
+chocolateReviewApp.use("/api/types", typeRouter)
 
 //finally run app
 chocolateReviewApp.listen(serverPort, () => console.log(`Chocolate backend running, port is ${serverPort}`));

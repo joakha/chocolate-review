@@ -1,0 +1,37 @@
+// create new review
+POST http://localhost:8000/api/reviews
+Content-Type: application/json
+
+{
+    "title": "My review",
+    "content": "My content",
+    "poster": "Test poster"
+}
+
+###
+
+//edit review
+PUT http://localhost:8000/api/reviews/67b99d06ccb8421b26198287
+Content-Type: application/json
+
+{
+    "title": "edited review!"
+}
+
+###
+
+//get all reviews
+GET http://localhost:8000/api/reviews
+
+###
+
+//get reviews by poster
+GET http://localhost:8000/api/reviews?poster=Test%20poster
+
+###
+//delete a review
+DELETE http://localhost:8000/api/reviews/67b9a6f13706ac6ab8c286c8
+
+###
+//get a review
+GET http://localhost:8000/api/reviews/67b99d06ccb8421b26198287

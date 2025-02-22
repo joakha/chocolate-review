@@ -1,0 +1,17 @@
+// create new type
+POST http://localhost:8000/api/types
+Content-Type: application/json
+
+{
+    "name": "dark chocolate"
+}
+
+###
+
+//get types
+GET http://localhost:8000/api/types
+Content-Type: application/json
+
+{
+    "name": "dark chocolate"
+}
