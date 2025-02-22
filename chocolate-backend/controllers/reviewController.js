@@ -44,7 +44,7 @@ const getReviews = async (req, res) => {
         } else {
             reviews = await ReviewModel.find();
         }
-        if (!reviews) return res.status(204).json({ "info": "No reviews were found!" });
+        if (reviews.length === 0) return res.status(404).json({ "info": "No reviews were found!" });
         res.status(200).json(reviews);
     } catch (err) {
         console.error(err);
@@ -66,7 +66,7 @@ const deleteReview = async (req, res) => {
 const getReview = async (req, res) => {
     try {
         const review = await ReviewModel.findById(req.params.id)
-        if (!review) return res.status(204).json({ "info": "No review was found!" });
+        if (!review) return res.status(404).json({ info: "No review was found!" });
         res.status(200).json(review);
     } catch (err) {
         console.error(err)

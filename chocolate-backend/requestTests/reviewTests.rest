@@ -3,6 +3,7 @@ POST http://localhost:8000/api/reviews
 Content-Type: application/json
 
 {
+    "_id": "507f191e810c19729de860ea",
     "title": "My review",
     "content": "My content",
     "poster": "Test poster"
@@ -11,7 +12,7 @@ Content-Type: application/json
 ###
 
 //edit review
-PUT http://localhost:8000/api/reviews/67b99d06ccb8421b26198287
+PUT http://localhost:8000/api/reviews/507f191e810c19729de860ea
 Content-Type: application/json
 
 {
@@ -30,8 +31,8 @@ GET http://localhost:8000/api/reviews?poster=Test%20poster
 
 ###
 //delete a review
-DELETE http://localhost:8000/api/reviews/67b9a6f13706ac6ab8c286c8
+DELETE http://localhost:8000/api/reviews/507f191e810c19729de860ea
 
 ###
 //get a review
-GET http://localhost:8000/api/reviews/67b99d06ccb8421b26198287
+GET http://localhost:8000/api/reviews/507f191e810c19729de860ea
