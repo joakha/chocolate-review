@@ -1,0 +1,25 @@
+// create new app user
+POST http://localhost:8000/api/appUsers
+Content-Type: application/json
+
+{
+    "_id": "67bf2d5ea6f2022728208a1f",
+    "username":"test",
+    "password": "test",
+    "email": "test@gmail.com"
+}
+
+###
+
+//edit review
+PUT http://localhost:8000/api/appUsers/67bf2d5ea6f2022728208a1f
+Content-Type: application/json
+
+{
+    "password": "edited password!"
+}
+
+###
+
+//get an app user
+GET http://localhost:8000/api/appUsers/67bf2d5ea6f2022728208a1f
