@@ -1,13 +1,8 @@
-import ChocolateHeader from "./components/ChocolateHeader"
-import ChocolateBanner from "./components/ChocolateBanner"
+import Landing from "./components/Landing"
 
 function App() {
-
   return (
-    <>
-    <ChocolateHeader />
-    <ChocolateBanner />
-    </>
+    <Landing />
   )
 }
 
