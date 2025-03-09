@@ -2,7 +2,7 @@ import chocolateImage from "../assets/chocolate2.jpg"
 
 const Typebar = () => {
     return (
-        <section className="flex basis-1/5 justify-center lg:justify-normal">
+        <section className="flex basis-1/5 justify-center">
             <article className="flex w-[400px] h-[578px] flex-col items-center bg-orange-950 m-10 rounded-xl">
                 <img
                     className="w-full h-[250px] object-cover rounded-xl"

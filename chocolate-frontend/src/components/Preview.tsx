@@ -1,4 +1,5 @@
 import chocolateImage from "../assets/chocolate1.jpg"
+import { Link } from "react-router-dom"
 
 const Preview = () => {
     return (
@@ -8,9 +9,11 @@ const Preview = () => {
                 className="w-[350px] h-[250px] object-cover rounded-xl"
             />
             <div className="flex items-center flex-col">
-                <h3 className="font-bold text-2xl my-3">
-                    Review Title
-                </h3>
+                <Link to="/review">
+                    <h3 className="font-bold text-2xl my-3">
+                        Review Title
+                    </h3>
+                </Link>
                 <p className="my-3">
                     Review Types
                 </p>

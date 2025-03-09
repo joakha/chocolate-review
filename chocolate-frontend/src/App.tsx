@@ -1,8 +1,17 @@
-import Landing from "./components/Landing"
+import LandingPage from "./components/pages/LandingPage"
+import { Route, Routes } from "react-router-dom";
+import { ReviewPage } from "./components/pages/ReviewPage";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <Landing />
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/review" element={<ReviewPage />} />
+      </Routes>
+    </>
   )
 }
 

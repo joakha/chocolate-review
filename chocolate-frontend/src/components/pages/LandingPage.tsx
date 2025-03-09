@@ -1,12 +1,10 @@
-import Header from "./Header"
-import Banner from "./Banner"
-import Previews from "./Previews"
-import Typebar from "./Typebar"
+import Banner from "../Banner"
+import Previews from "../Previews"
+import Typebar from "../Typebar"
 
-const Landing = () => {
+const LandingPage = () => {
     return (
         <>
-            <Header />
             <Banner />
             <div className="flex flex-col lg:flex-row">
                 <Previews />
@@ -16,4 +14,4 @@ const Landing = () => {
     )
 }
 
-export default Landing
+export default LandingPage
