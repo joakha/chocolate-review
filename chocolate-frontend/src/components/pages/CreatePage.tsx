@@ -1,13 +1,13 @@
-import Review from "../Review"
 import Typebar from "../Typebar"
+import Create from "../Create"
 
-const ReviewPage = () => {
+const CreatePage = () => {
   return (
     <div className="flex flex-col lg:flex-row">
-        <Review />
+        <Create />
         <Typebar />
     </div>
   )
 }
 
-export default ReviewPage
+export default CreatePage
