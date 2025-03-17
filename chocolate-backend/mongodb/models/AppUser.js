@@ -24,6 +24,6 @@ const AppUserSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-const AppUserModel = mongoose.model("appUser", AppUserSchema);
+const AppUserModel = mongoose.model("AppUser", AppUserSchema);
 
 export default AppUserModel

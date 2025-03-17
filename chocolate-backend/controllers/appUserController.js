@@ -24,7 +24,6 @@ const getAppUser = async (req, res) => {
     }
 }
 
-
 const postAppUser = async (req, res) => {
     const saltRounds = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
@@ -39,7 +38,7 @@ const postAppUser = async (req, res) => {
         )
         console.log(toBeAddedAppUser)
         await toBeAddedAppUser.save();
-        res.status(200).json({ "info": "App user created successfully!" });
+        res.status(200).json(toBeAddedAppUser);
     } catch (err) {
         res.status(500).json({ error: 'Error creating app user in mongoDB!', err });
     }

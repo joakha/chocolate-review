@@ -12,7 +12,9 @@ const Header = () => {
                 <Link to="/">
                     <article>Home</article>
                 </Link>
-                <article>About</article>
+                <Link to="/register">
+                    <article>Register</article>
+                </Link>
             </section>
             <section className="flex basis-1/6 justify-center gap-5">
                 <article>Profile</article>

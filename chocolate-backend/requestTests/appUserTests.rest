@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-//edit review
+//edit appUser
 PUT http://localhost:8000/api/appUsers/67bf2d5ea6f2022728208a1f
 Content-Type: application/json
 
