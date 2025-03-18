@@ -8,7 +8,10 @@ const login = async (req, res) => {
 
         const passwordOK = await bcrypt.compare(req.body.password, appUser.password);
         if (!passwordOK) res.status(400).json("Username or password wrong!");
-        res.status(200).json();
+
+        const { password, ...otherUserData } = appUser._doc;
+
+        res.status(200).json(otherUserData);
     } catch (err) {
         res.status(500).json({ error: 'Error logging in!', err });
     }

@@ -19,10 +19,10 @@ export const Register = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: authReducerActions.login });
+    dispatch({ type: authReducerActions.register });
     const responseData = await registerAppUser(registerInfo);
     setTimeout(() => {
-      dispatch({ type: authReducerActions.loggedIn, payload: responseData });
+      dispatch({ type: authReducerActions.registered, payload: responseData });
     }, 3000)
   }
 
@@ -31,7 +31,8 @@ export const Register = () => {
   }, [appUser])
 
   return (
-    <section className="flex m-10 justify-center">
+    <section className="flex flex-col m-10 items-center">
+      <h1 className="font-bold text-3xl mb-10">Register</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
         <input className="w-[50vw] p-4 rounded-xl text-black"
           name="email" type="email"

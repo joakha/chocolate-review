@@ -1,8 +1,11 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { LoginInfo } from "../types/types"
 import { login } from "../api/authentication";
+import useAuthentication from "../hooks/useAuthentication";
 
 export const Login = () => {
+
+  const { isAuthenticating, dispatch, appUser, authReducerActions } = useAuthentication();
 
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
     username: "",
@@ -15,13 +18,21 @@ export const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const responseData = await login(loginInfo)
-
-    console.log(responseData);
+    dispatch({ type: authReducerActions.login });
+    const userData = await login(loginInfo);
+    sessionStorage.setItem("userData", JSON.stringify(userData));
+    setTimeout(() => {
+      dispatch({ type: authReducerActions.loggedIn, payload: userData });
+    }, 3000)
   }
 
+  useEffect(() => {
+    console.log(appUser)
+  }, [appUser])
+
   return (
-    <section className="flex m-10 justify-center">
+    <section className="flex flex-col m-10 items-center">
+      <h1 className="font-bold text-3xl mb-10">Login</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
         <input
           className="w-[50vw] p-4 rounded-xl text-black"
@@ -43,6 +54,7 @@ export const Login = () => {
           Login
         </button>
       </form>
+      {isAuthenticating && <div>authenticating...</div>}
     </section>
   )
 }

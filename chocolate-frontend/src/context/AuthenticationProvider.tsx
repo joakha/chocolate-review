@@ -7,8 +7,11 @@ type AuthenticationProviderProps = {
 }
 
 const authReducerActions = {
+    register: "register",
+    registered: "registered",
     login: "login",
-    loggedIn: "loggedIn"
+    loggedIn: "loggedIn",
+    logout: "logout"
 }
 
 export type AuthReducerActions = typeof authReducerActions;
@@ -22,10 +25,16 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
 
     const authReducer = (state: AuthStateType, action: AuthReducerActionType) => {
         switch (action.type) {
+            case "register":
+                return { ...state, isAuthenticating: true };
+            case "registered":
+                return { ...state, isAuthenticating: false, appUser: action.payload as AppUser }
             case "login":
                 return { ...state, isAuthenticating: true };
             case "loggedIn":
-                return { ...state, isAuthenticating: false, appUser: action.payload || null }
+                return { ...state, isAuthenticating: false, appUser: action.payload as AppUser }
+            case "logout":
+                return { ...state, isAuthenticating: false, appUser: null }
             default:
                 return state;
         }
@@ -33,7 +42,7 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
 
     const initAuthState = {
         isAuthenticating: false,
-        appUser: null
+        appUser: JSON.parse(`${sessionStorage.getItem("userData")}`) || null
     }
 
     const [state, dispatch] = useReducer(authReducer, initAuthState);

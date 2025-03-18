@@ -36,7 +36,6 @@ const postAppUser = async (req, res) => {
                 email: req.body.email
             }
         )
-        console.log(toBeAddedAppUser)
         await toBeAddedAppUser.save();
         res.status(200).json(toBeAddedAppUser);
     } catch (err) {
