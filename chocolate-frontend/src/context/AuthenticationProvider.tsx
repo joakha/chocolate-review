@@ -1,10 +1,6 @@
-import { useReducer, ReactNode } from "react"
-import { AppUser, AuthenticationContextType, AuthReducerActionType } from "../types/types"
-import { AuthenticationContext } from "./AuthenticationContext"
-
-type AuthenticationProviderProps = {
-    children: ReactNode
-}
+import { useReducer } from "react"
+import { AppUser, AuthenticationContextType, AuthReducerActionType, ProviderProps } from "../types/types"
+import AuthenticationContext from "./AuthenticationContext"
 
 const authReducerActions = {
     register: "register",
@@ -16,7 +12,7 @@ const authReducerActions = {
 
 export type AuthReducerActions = typeof authReducerActions;
 
-const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
+const AuthenticationProvider = ({ children }: ProviderProps) => {
 
     type AuthStateType = {
         isAuthenticating: boolean,
@@ -28,11 +24,11 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
             case "register":
                 return { ...state, isAuthenticating: true };
             case "registered":
-                return { ...state, isAuthenticating: false, appUser: action.payload as AppUser }
+                return { ...state, isAuthenticating: false, appUser: action.payload || null }
             case "login":
                 return { ...state, isAuthenticating: true };
             case "loggedIn":
-                return { ...state, isAuthenticating: false, appUser: action.payload as AppUser }
+                return { ...state, isAuthenticating: false, appUser: action.payload || null }
             case "logout":
                 return { ...state, isAuthenticating: false, appUser: null }
             default:

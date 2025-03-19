@@ -20,14 +20,14 @@ const ReviewSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        types: {
-            type: Array,
-            required: false
+        type: {
+            type: mongoose.Schema.ObjectId, ref: "type",
+            required: true
         }
     },
     { timestamps: true }
 );
 
-const ReviewModel = mongoose.model("Review", ReviewSchema);
+const ReviewModel = mongoose.model("review", ReviewSchema);
 
 export default ReviewModel

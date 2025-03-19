@@ -17,7 +17,7 @@ const editAppUser = async (req, res) => {
 const getAppUser = async (req, res) => {
     try {
         const appUser = await AppUserModel.findById(req.params.id);
-        const { username, ...otherData } = appUser._doc
+        const { password, ...otherData } = appUser._doc
         res.status(200).json(otherData);
     } catch (err) {
         res.status(500).json({ error: 'Error getting app user!', err });

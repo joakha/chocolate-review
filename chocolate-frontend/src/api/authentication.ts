@@ -1,6 +1,5 @@
 import { RegisterInfo, LoginInfo } from "../types/types"
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_URL } from "../constants/constants";
 
 const registerAppUser = async (registerInfo: RegisterInfo) => {
     try {
@@ -13,7 +12,7 @@ const registerAppUser = async (registerInfo: RegisterInfo) => {
         const responseData = await response.json();
         return responseData;
     } catch (error) {
-        console.error("Error registering user", error);
+        console.error("Error registering user:", error);
     }
 }
 
@@ -28,7 +27,8 @@ const login = async (loginInfo: LoginInfo) => {
         const responseData = await response.json();
         return responseData;
     } catch (error) {
-        console.error("Error logging user in", error);
+        console.error("Error logging user in:", error);
+        return null;
     }
 }
 

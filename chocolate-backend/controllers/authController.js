@@ -4,10 +4,10 @@ import AppUserModel from "../mongodb/models/AppUser.js";
 const login = async (req, res) => {
     try {
         const appUser = await AppUserModel.findOne({ username: req.body.username });
-        if (!appUser) res.status(400).json("Username or password wrong!");
+        if (!appUser) return res.status(400).json("Username or password wrong!");
 
         const passwordOK = await bcrypt.compare(req.body.password, appUser.password);
-        if (!passwordOK) res.status(400).json("Username or password wrong!");
+        if (!passwordOK) return res.status(400).json("Username or password wrong!");
 
         const { password, ...otherUserData } = appUser._doc;
 

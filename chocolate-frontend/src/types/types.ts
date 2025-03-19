@@ -1,6 +1,7 @@
 import { AuthReducerActions } from "../context/AuthenticationProvider"
+import { ReactNode } from "react"
 
-//types for authentication, authentication context and provider
+//types for authentication
 export type RegisterInfo = {
     email: string,
     username: string,
@@ -13,7 +14,18 @@ export type LoginInfo = {
 }
 
 export type AppUser = {
-    username: string
+    _id: string,
+    username: string,
+    email: string,
+}
+
+//types for review
+export type Review = {
+    title: string,
+    content: string,
+    image: string | null,
+    poster: string,
+    type: string
 }
 
 //types for authentication context and provider
@@ -27,4 +39,20 @@ export type AuthenticationContextType = {
     appUser: AppUser | null,
     dispatch: React.ActionDispatch<[action: AuthReducerActionType]>
     authReducerActions: AuthReducerActions
+}
+
+//types for type context and provider
+export type Type = {
+    _id: string,
+    name: string
+}
+
+export type TypeContextType = {
+    types: Type[] | null,
+    loadingTypes: boolean,
+}
+
+//types for context providers
+export type ProviderProps = {
+    children: ReactNode,
 }

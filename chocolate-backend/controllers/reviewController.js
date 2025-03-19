@@ -42,7 +42,7 @@ const getReviews = async (req, res) => {
                 }
             });
         } else {
-            reviews = await ReviewModel.find();
+            reviews = await ReviewModel.find().populate(["type"]);
         }
         if (reviews.length === 0) return res.status(404).json({ "info": "No reviews were found!" });
         res.status(200).json(reviews);
@@ -65,7 +65,7 @@ const deleteReview = async (req, res) => {
 
 const getReview = async (req, res) => {
     try {
-        const review = await ReviewModel.findById(req.params.id)
+        const review = await ReviewModel.findById(req.params.id).populate(["type"])
         if (!review) return res.status(404).json({ info: "No review was found!" });
         res.status(200).json(review);
     } catch (err) {

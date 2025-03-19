@@ -6,7 +6,8 @@ Content-Type: application/json
     "_id": "507f191e810c19729de860ea",
     "title": "My review",
     "content": "My content",
-    "poster": "Test poster"
+    "poster": "hi",
+    "type": "67dab06481208f1cb951dc72"
 }
 
 ###
@@ -30,9 +31,11 @@ GET http://localhost:8000/api/reviews
 GET http://localhost:8000/api/reviews?poster=Test%20poster
 
 ###
+
 //delete a review
 DELETE http://localhost:8000/api/reviews/507f191e810c19729de860ea
 
 ###
+
 //get a review
 GET http://localhost:8000/api/reviews/507f191e810c19729de860ea

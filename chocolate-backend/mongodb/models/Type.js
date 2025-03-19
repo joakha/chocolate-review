@@ -10,6 +10,6 @@ const TypeSchema = new mongoose.Schema(
     }
 );
 
-const TypeModel = mongoose.model("Type", TypeSchema);
+const TypeModel = mongoose.model("type", TypeSchema);
 
 export default TypeModel

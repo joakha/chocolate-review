@@ -1,11 +1,11 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { LoginInfo } from "../types/types"
 import { login } from "../api/authentication";
 import useAuthentication from "../hooks/useAuthentication";
 
 export const Login = () => {
 
-  const { isAuthenticating, dispatch, appUser, authReducerActions } = useAuthentication();
+  const { isAuthenticating, dispatch, authReducerActions } = useAuthentication();
 
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
     username: "",
@@ -19,16 +19,16 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: authReducerActions.login });
-    const userData = await login(loginInfo);
-    sessionStorage.setItem("userData", JSON.stringify(userData));
-    setTimeout(() => {
-      dispatch({ type: authReducerActions.loggedIn, payload: userData });
-    }, 3000)
+    try {
+      const userData = await login(loginInfo);
+      sessionStorage.setItem("userData", JSON.stringify(userData));
+      setTimeout(() => {
+        dispatch({ type: authReducerActions.loggedIn, payload: userData });
+      }, 3000)
+    } catch (error) {
+      console.error(error);
+    }
   }
-
-  useEffect(() => {
-    console.log(appUser)
-  }, [appUser])
 
   return (
     <section className="flex flex-col m-10 items-center">
@@ -40,12 +40,14 @@ export const Login = () => {
           type="text"
           placeholder="Username"
           onChange={handleChange}
+          value={loginInfo.username}
         />
         <input className="w-[50vw] p-4 rounded-xl text-black"
           name="password"
           type="password"
           placeholder="Password"
           onChange={handleChange}
+          value={loginInfo.password}
         />
         <button
           className="bg-chocolate-dark p-2 rounded-xl"
