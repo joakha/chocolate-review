@@ -1,7 +1,8 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import appUserRouter from "./routes/appUserRouter";
 
 //making sure environment variables load properly
 dotenv.config()
@@ -20,9 +21,8 @@ chocolateBackendApp.use(express.urlencoded({ extended: true }));
 //allow this application to communicate with frontend
 chocolateBackendApp.use(cors());
 
-chocolateBackendApp.get("/api/test", async (req: Request, res: Response) => {
-    res.json({ message: "api test!" });
-});
+//routes for appuser operations
+chocolateBackendApp.use("/api/appUsers", appUserRouter);
 
 chocolateBackendApp.listen(8080, () => {
     console.log(`Chocolate backend running and port is 8080`);

@@ -1,7 +1,8 @@
 import { Schema, model } from "mongoose";
 import { AppUser } from "../../types/types";
+import bcrypt from "bcryptjs"
 
-const appUserSchema = new Schema({
+export const appUserSchema = new Schema({
     username: {
         type: String,
         required: true
@@ -16,6 +17,13 @@ const appUserSchema = new Schema({
         required: true,
     }
 });
+
+appUserSchema.pre("save", async function (next) {
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
+    next();
+})
 
 const AppUser = model<AppUser>("AppUser", appUserSchema);
 
