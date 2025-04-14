@@ -24,6 +24,7 @@ chocolateBackendApp.use(cors());
 //routes for appuser operations
 chocolateBackendApp.use("/api/appUsers", appUserRouter);
 
+//finally run app
 chocolateBackendApp.listen(8080, () => {
     console.log(`Chocolate backend running and port is 8080`);
 });
