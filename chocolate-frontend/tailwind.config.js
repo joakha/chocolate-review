@@ -19,6 +19,11 @@ export default {
         mint: "#A3C585",
         gold: "#C69C6D",
       },
+      container: {
+        padding: {
+          md: "2rem"
+        }
+      }
     },
   },
   plugins: [],

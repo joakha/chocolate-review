@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Header = () => {
   return (
-    <div className="bg-chocolate-dark py-8 text-white">
+    <header className="bg-chocolate-dark py-8 text-white">
       <div className="container mx-auto flex justify-between">
         <span className="text-3xl font-bold tracking-tighter">
           <Link to="/">Chocolate Review App</Link>
@@ -13,7 +13,7 @@ const Header = () => {
           </Link>
         </span>
       </div>
-    </div>
+    </header>
   )
 }
 
