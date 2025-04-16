@@ -1,12 +1,24 @@
 import { useForm } from "react-hook-form"
 import { RegisterInfo } from "../types/types";
+import { useMutation, } from "@tanstack/react-query";
+import { registerAppUser } from "../api/appUser";
 
-const Register = () => {
+const RegisterAppUser = () => {
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm<RegisterInfo>();
 
+    const mutation = useMutation({
+        mutationFn: registerAppUser,
+        onSuccess: () => {
+            console.log("App user registered successfully");
+        },
+        onError: (error: Error) => {
+            console.log(error.message);
+        }
+    });
+
     const submitForm = handleSubmit((registerInfo) => {
-        console.log(registerInfo);
+        mutation.mutate(registerInfo);
     })
 
     return (
@@ -40,7 +52,7 @@ const Register = () => {
                 {...register("password", {
                     required: "Password is required",
                     minLength: {
-                        value: 6,
+                        value: 8,
                         message: "Password length should be 8 or more characters"
                     }
                 })}
@@ -76,4 +88,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default RegisterAppUser
