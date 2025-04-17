@@ -1,8 +1,7 @@
-import { RegisterInfo } from "../types/types"
+import { RegisterInfoType } from "../types/types"
+import { BACKEND_URL } from "../constants";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
-const registerAppUser = async (registerInfo: RegisterInfo) => {
+const registerUser = async (registerInfo: RegisterInfoType) => {
     const responseHeaders = {
         "Content-Type": "application/json"
     };
@@ -19,5 +18,5 @@ const registerAppUser = async (registerInfo: RegisterInfo) => {
 }
 
 export {
-    registerAppUser
+    registerUser
 }

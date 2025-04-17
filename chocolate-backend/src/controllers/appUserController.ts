@@ -14,7 +14,7 @@ const registerAppUser = async (req: Request, res: Response) => {
         let appUser = await AppUser.findOne({
             email: req.body.email
         })
-        if (appUser) res.status(400).json({ alert: "Email already in use!" });
+        if (appUser) res.status(400).json({ message: "Email already in use!" });
         appUser = new AppUser(req.body);
         await appUser.save();
 
@@ -32,7 +32,7 @@ const registerAppUser = async (req: Request, res: Response) => {
         res.status(200).send({ message: "App user registration successful!" });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ alert: "Server error!" });
+        res.status(500).json({ message: "Server error!" });
     }
 }
 
@@ -48,9 +48,9 @@ const loginAppUser = async (req: Request, res: Response): Promise<any> => {
         let appUser = await AppUser.findOne({
             email: email
         });
-        if (!appUser) return res.status(400).json({ alert: "Credentials are invalid!" });
+        if (!appUser) return res.status(400).json({ message: "Credentials are invalid!" });
         const correctPassword = await bcrypt.compare(password, appUser.password);
-        if (!correctPassword) return res.status(400).json({ alert: "Credentials are invalid!" });
+        if (!correctPassword) return res.status(400).json({ message: "Credentials are invalid!" });
 
         const token = jwt.sign(
             { appUserId: appUser.id },
@@ -66,7 +66,7 @@ const loginAppUser = async (req: Request, res: Response): Promise<any> => {
         return res.status(200).json({ appUserId: appUser._id });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ alert: "Server error!" });
+        res.status(500).json({ message: "Server error!" });
     }
 }
 
