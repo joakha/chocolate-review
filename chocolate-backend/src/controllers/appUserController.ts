@@ -7,14 +7,14 @@ import bcrypt from "bcryptjs"
 const registerAppUser = async (req: Request, res: Response) => {
     //check for errors from registration validation
     const validationErrors = validationResult(req);
-    if (!validationErrors.isEmpty()) res.status(400).json({ message: validationErrors.array() });
+    if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
 
     //then execute the rest
     try {
         let appUser = await AppUser.findOne({
             email: req.body.email
         })
-        if (appUser) res.status(400).json({ message: "Email already in use!" });
+        if (appUser) return res.status(400).json({ message: "Email already in use!" });
         appUser = new AppUser(req.body);
         await appUser.save();
 
@@ -29,14 +29,14 @@ const registerAppUser = async (req: Request, res: Response) => {
             maxAge: 3600000
         });
 
-        res.status(200).send({ message: "App user registration successful!" });
+        return res.status(200).send({ message: "App user registration successful!" });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error!" });
+        return res.status(500).json({ message: "Server error!" });
     }
 }
 
-const loginAppUser = async (req: Request, res: Response): Promise<any> => {
+const loginAppUser = async (req: Request, res: Response) => {
     //check for errors from login validation
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
@@ -66,11 +66,16 @@ const loginAppUser = async (req: Request, res: Response): Promise<any> => {
         return res.status(200).json({ appUserId: appUser._id });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error!" });
+        return res.status(500).json({ message: "Server error!" });
     }
+}
+
+const verifyJWT = async (req: Request, res: Response) => {
+    return res.status(200).send({ appUserId: req.appUserId })
 }
 
 export {
     registerAppUser,
-    loginAppUser
+    loginAppUser,
+    verifyJWT
 }

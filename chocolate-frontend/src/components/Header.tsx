@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
+import { useUser } from "../hooks/useUser"
 
 const Header = () => {
+
+  const { loggedIn } = useUser();
+
   return (
     <header className="bg-chocolate-dark py-8 text-white">
       <div className="container mx-auto flex justify-between">

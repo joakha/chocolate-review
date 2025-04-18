@@ -1,8 +1,10 @@
 import { UserContext } from "./UserContext";
-import { AuthNotification, UserProviderType,  } from "../types/types";
+import { AuthNotification, UserProviderType, } from "../types/types";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { verifyJWT } from "../api/user";
 
-export const UserProvider = ({children}: UserProviderType) => {
+export const UserProvider = ({ children }: UserProviderType) => {
 
     const updateNotification = (msg: AuthNotification) => {
         setNotificationMsg(msg);
@@ -14,10 +16,19 @@ export const UserProvider = ({children}: UserProviderType) => {
 
     const [notificationMsg, setNotificationMsg] = useState<AuthNotification | null>(null);
 
+    const { isError } = useQuery({
+        queryKey: ["verifyJWT"],
+        queryFn: verifyJWT,
+        retry: false
+    });
+
+    const loggedIn = !isError;
+
     const UserProviderValue = {
         updateNotification,
         closeNotification,
-        notificationMsg
+        notificationMsg,
+        loggedIn
     }
 
     return (

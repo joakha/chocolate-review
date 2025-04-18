@@ -17,7 +17,8 @@ type AuthNotification = {
 type UserContextType = {
     updateNotification: (msg: AuthNotification) => void,
     closeNotification: () => void,
-    notificationMsg: AuthNotification | null
+    notificationMsg: AuthNotification | null,
+    loggedIn: boolean
 }
 
 type UserProviderType = {

@@ -3,7 +3,7 @@ import { useUser } from "../hooks/useUser"
 
 export const AuthNotification = () => {
 
-    const { notificationMsg, closeNotification } = useUser()
+    const { notificationMsg, closeNotification } = useUser();
 
     useEffect(() => {
         const appearanceTimeout = setTimeout(() => {
