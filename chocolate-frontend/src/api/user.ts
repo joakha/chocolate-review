@@ -37,6 +37,15 @@ const loginUser = async (loginInfo: LoginInfoType) => {
     return responseBody;
 }
 
+const logoutUser = async () => {
+    const response = await fetch(`${BACKEND_URL}/api/appUsers/logout`, {
+        method: "POST",
+        credentials: "include"
+    });
+
+    if (!response.ok) throw new Error("Error logging out");
+}
+
 const verifyJWT = async () => {
     const response = await fetch(`${BACKEND_URL}/api/appUsers/verify-jwt`, {
         credentials: "include",
@@ -50,5 +59,6 @@ const verifyJWT = async () => {
 export {
     registerUser,
     verifyJWT,
-    loginUser
+    loginUser,
+    logoutUser
 }

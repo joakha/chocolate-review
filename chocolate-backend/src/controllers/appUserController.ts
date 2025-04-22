@@ -70,6 +70,14 @@ const loginAppUser = async (req: Request, res: Response) => {
     }
 }
 
+const logoutUser = async (req: Request, res: Response) => {
+    res.cookie("token", "", {
+        expires: new Date(0)
+    });
+
+    res.send();
+}
+
 const verifyJWT = async (req: Request, res: Response) => {
     return res.status(200).send({ appUserId: req.appUserId })
 }
@@ -77,5 +85,6 @@ const verifyJWT = async (req: Request, res: Response) => {
 export {
     registerAppUser,
     loginAppUser,
-    verifyJWT
+    verifyJWT,
+    logoutUser
 }

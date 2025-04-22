@@ -1,25 +1,31 @@
 import { useForm } from "react-hook-form"
 import { LoginInfoType } from "../types/types"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { loginUser } from "../api/user"
 import { useUser } from "../hooks/useUser"
 import { AuthNotification } from "../types/types"
+import { useNavigate } from "react-router-dom"
 
 export const LoginUser = () => {
 
   const { register, formState: { errors }, handleSubmit } = useForm<LoginInfoType>()
 
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const { updateNotification } = useUser();
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["verifyJWT"] });
       const notificationMsg: AuthNotification = {
         msg: "Login successful!",
         type: "SUCCESSFUL"
       }
 
       updateNotification(notificationMsg);
+      navigate("/");
     },
     onError: (error: Error) => {
       const notificationMsg: AuthNotification = {
@@ -71,10 +77,15 @@ export const LoginUser = () => {
         }
       </div>
 
-      <div>
+      <div className="flex items-center justify-between">
         <button type="submit" className="bg-chocolate-milk rounded-md text-white p-2 font-bold text-2xl">
           Login
         </button>
+        <span
+          className="text-lg"
+        >
+          No account? <span onClick={() => navigate("/register")} className="underline hover:cursor-pointer">Register here</span>
+        </span>
       </div>
     </form>
   )

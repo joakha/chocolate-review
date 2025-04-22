@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { RegisterInfoType, AuthNotification } from "../types/types";
-import { useMutation, } from "@tanstack/react-query";
+import { useMutation, useQueryClient, } from "@tanstack/react-query";
 import { registerUser } from "../api/user";
 import { useUser } from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,14 @@ const RegisterUser = () => {
 
     const navigate = useNavigate();
 
+    const queryClient = useQueryClient();
+
     const { register, watch, handleSubmit, formState: { errors } } = useForm<RegisterInfoType>();
 
     const registerMutation = useMutation({
         mutationFn: registerUser,
-        onSuccess: () => {
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ["verifyJWT"] });
             const notificationMsg: AuthNotification = {
                 msg: "Registered successfully!",
                 type: "SUCCESSFUL"
@@ -104,10 +107,16 @@ const RegisterUser = () => {
                 }
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
                 <button type="submit" className="bg-chocolate-milk rounded-md text-white p-2 font-bold text-2xl">
                     Register
                 </button>
+                <span
+                    className="text-lg"
+                    onClick={() => navigate("/login")}
+                >
+                    Already a user? <span className="underline hover:cursor-pointer">Login here</span>
+                </span>
             </div>
         </form>
     )
