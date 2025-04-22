@@ -12,9 +12,17 @@ const Header = () => {
           <Link to="/">Chocolate Review App</Link>
         </span>
         <span className="flex space-x-2">
-          <Link to="/register" className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold">
-            Register
-          </Link>
+          {loggedIn ? (
+            <>
+              <Link to={"/appuser-reviews"}>Your Reviews</Link>
+              <Link to={"/appuser-comments"}>Your Comments</Link>
+              <Link to={"/login"}>Login</Link>
+            </>
+          ) : (
+            <Link to="/register" className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold">
+              Register
+            </Link>
+          )}
         </span>
       </div>
     </header>

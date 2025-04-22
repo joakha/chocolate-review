@@ -1,4 +1,4 @@
-import { RegisterInfoType } from "../types/types"
+import { RegisterInfoType, LoginInfoType } from "../types/types"
 import { BACKEND_URL } from "../constants";
 
 const registerUser = async (registerInfo: RegisterInfoType) => {
@@ -18,6 +18,25 @@ const registerUser = async (registerInfo: RegisterInfoType) => {
     if (!response.ok) throw new Error(responseBody.message);
 }
 
+const loginUser = async (loginInfo: LoginInfoType) => {
+    const responseHeaders = {
+        "Content-Type": "application/json"
+    };
+
+    const response = await fetch(`${BACKEND_URL}/api/appUsers/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: responseHeaders,
+        body: JSON.stringify(loginInfo)
+    });
+
+    const responseBody = await response.json();
+
+    if (!response.ok) throw new Error(responseBody.message);
+
+    return responseBody;
+}
+
 const verifyJWT = async () => {
     const response = await fetch(`${BACKEND_URL}/api/appUsers/verify-jwt`, {
         credentials: "include",
@@ -30,5 +49,6 @@ const verifyJWT = async () => {
 
 export {
     registerUser,
-    verifyJWT
+    verifyJWT,
+    loginUser
 }

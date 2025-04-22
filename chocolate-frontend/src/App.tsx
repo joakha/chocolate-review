@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import RegisterUser from './components/RegisterUser'
 import { AuthNotification } from './components/AuthNotification'
 import { useUser } from './hooks/useUser'
+import LoginUser from './components/LoginUser'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<p>Main content</p>} />
           <Route path='/register' element={<RegisterUser />} />
+          <Route path='/login' element={<LoginUser />} />
         </Routes>
       </div>
       <>

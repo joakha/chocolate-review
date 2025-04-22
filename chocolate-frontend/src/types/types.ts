@@ -8,6 +8,12 @@ type RegisterInfoType = {
     repeatPassword: string
 }
 
+//login form types
+type LoginInfoType = {
+    email: string,
+    password: string
+}
+
 //types for UserContext
 type AuthNotification = {
     msg: string,
@@ -30,4 +36,5 @@ export type {
     AuthNotification,
     UserContextType,
     UserProviderType,
+    LoginInfoType
 }

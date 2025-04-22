@@ -13,7 +13,7 @@ const RegisterUser = () => {
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm<RegisterInfoType>();
 
-    const mutation = useMutation({
+    const registerMutation = useMutation({
         mutationFn: registerUser,
         onSuccess: () => {
             const notificationMsg: AuthNotification = {
@@ -35,7 +35,7 @@ const RegisterUser = () => {
     });
 
     const submitForm = handleSubmit((registerInfo) => {
-        mutation.mutate(registerInfo);
+        registerMutation.mutate(registerInfo);
     })
 
     return (
