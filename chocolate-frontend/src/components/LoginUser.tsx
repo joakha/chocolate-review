@@ -20,7 +20,7 @@ export const LoginUser = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["verifyJWT"] });
       const notificationMsg: AuthNotification = {
-        msg: "Login successful!",
+        msg: "Logged in!",
         type: "SUCCESSFUL"
       }
 
