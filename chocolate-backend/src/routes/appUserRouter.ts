@@ -1,6 +1,6 @@
 import express from "express";
-import { registerAppUser, loginAppUser, verifyJWT, logoutUser } from "../controllers/appusercontroller";
-import { validateRegister, validateLogin, validateJWT } from "../middleware/validateappuser";
+import { registerAppUser, loginAppUser, verifyJWT, logoutUser } from "../controllers/appUserController";
+import { validateRegister, validateLogin, validateJWT } from "../middleware/validateAppUser";
 
 const appUserRouter = express.Router();
 

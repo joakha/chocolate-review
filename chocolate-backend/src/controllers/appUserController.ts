@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import AppUser from "../mongodb/models/appuser";
+import AppUser from "../mongodb/models/appUser";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs"

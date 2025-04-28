@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import appUserRouter from "./routes/appuserrouter";
+import appUserRouter from "./routes/appUserRouter";
 import cookieParser from "cookie-parser"
 import path from "path"
 
