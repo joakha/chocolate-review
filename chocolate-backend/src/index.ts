@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import appUserRouter from "./routes/appUserRouter";
 import cookieParser from "cookie-parser"
+import path from "path"
 
 declare global {
     namespace Express {
@@ -37,6 +38,8 @@ chocolateBackendApp.use(cors({
     //requests from client url must include http cookie
     credentials: true
 }));
+
+chocolateBackendApp.use(express.static(path.join(__dirname, "../../chocolate-frontend/dist")));
 
 //routes for appuser operations
 chocolateBackendApp.use("/api/appUsers", appUserRouter);
