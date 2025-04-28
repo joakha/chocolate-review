@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import AppUser from "../mongodb/models/appuser";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs"
+import AppUser from "../mongodb/appUser";
 
 const registerAppUser = async (req: Request, res: Response) => {
     //check for errors from registration validation

@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { AppUser } from "../../types/types";
+import { AppUser } from "../types/types";
 import bcrypt from "bcryptjs"
 
 export const appUserSchema = new Schema({
