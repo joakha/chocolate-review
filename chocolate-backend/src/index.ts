@@ -17,10 +17,10 @@ declare global {
 //making sure environment variables load properly
 //different .env files for development and tests
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH || ".env" })
-const mongoDbURL = process.env.mongoDbUrl as string;
+const MONGO_DB_URL = process.env.MONGO_DB_URL as string;
 
 //connect to mongodb
-mongoose.connect(mongoDbURL);
+mongoose.connect(MONGO_DB_URL);
 
 //express app
 const chocolateBackendApp = express();
