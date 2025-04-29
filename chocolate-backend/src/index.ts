@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import appUserRouter from "./routes/appUserRouter";
 import cookieParser from "cookie-parser"
 import path from "path"
+import { v2 as cloudinary } from "cloudinary"
 
 declare global {
     namespace Express {
@@ -13,6 +14,12 @@ declare global {
         }
     }
 }
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 //making sure environment variables load properly
 //different .env files for development and tests
