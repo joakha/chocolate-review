@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs"
-import AppUser from "../mongodb/appUser";
+import AppUserModel from "../mongodb/appUser";
 
 const registerAppUser = async (req: Request, res: Response) => {
     //check for errors from registration validation
@@ -10,15 +10,14 @@ const registerAppUser = async (req: Request, res: Response) => {
     if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
 
     //then execute the rest
-
     let appUser;
 
     try {
-        appUser = await AppUser.findOne({
+        appUser = await AppUserModel.findOne({
             email: req.body.email
         })
         if (appUser) return res.status(400).json({ message: "Email already in use!" });
-        appUser = new AppUser(req.body);
+        appUser = new AppUserModel(req.body);
         await appUser.save();
 
         const token = jwt.sign(
@@ -47,8 +46,10 @@ const loginAppUser = async (req: Request, res: Response) => {
     //then execute the rest
     const { email, password } = req.body;
 
+    let appUser;
+
     try {
-        let appUser = await AppUser.findOne({
+        appUser = await AppUserModel.findOne({
             email: email
         });
         if (!appUser) return res.status(400).json({ message: "Credentials are invalid!" });

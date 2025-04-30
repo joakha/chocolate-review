@@ -8,6 +8,4 @@ const pictureUpload = multer({
     }
 })
 
-export {
-    pictureUpload
-}
+export default pictureUpload

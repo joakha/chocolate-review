@@ -20,5 +20,6 @@ type Review = {
 }
 
 export type {
-    AppUser
+    AppUser,
+    Review
 }

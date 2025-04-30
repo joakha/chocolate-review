@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { AppUser } from "../types/types";
 import bcrypt from "bcryptjs"
 
-export const appUserSchema = new Schema({
+const appUserSchema = new Schema<AppUser>({
     username: {
         type: String,
         required: true
@@ -25,6 +25,6 @@ appUserSchema.pre("save", async function (next) {
     next();
 })
 
-const AppUser = model<AppUser>("AppUser", appUserSchema);
+const AppUserModel = model<AppUser>("AppUser", appUserSchema);
 
-export default AppUser;
+export default AppUserModel
