@@ -1,8 +1,6 @@
 import express from "express"
-import multer from "multer"
-
-const pictureStorage = multer.memoryStorage()
+import { pictureUpload } from "../middleware/pictureUpload";
 
 const reviewRouter = express.Router();
 
-reviewRouter.post("/")
+reviewRouter.post("/", pictureUpload.array("pictures", 2))

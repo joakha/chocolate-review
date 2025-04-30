@@ -10,8 +10,11 @@ const registerAppUser = async (req: Request, res: Response) => {
     if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
 
     //then execute the rest
+
+    let appUser;
+
     try {
-        let appUser = await AppUser.findOne({
+        appUser = await AppUser.findOne({
             email: req.body.email
         })
         if (appUser) return res.status(400).json({ message: "Email already in use!" });
