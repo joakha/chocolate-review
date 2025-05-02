@@ -6,10 +6,11 @@ import RegisterUser from './components/RegisterUser'
 import { AuthNotification } from './components/AuthNotification'
 import { useUser } from './hooks/useUser'
 import LoginUser from './components/LoginUser'
+import { CreateReview } from './ReviewForm/CreateReview'
 
 function App() {
 
-  const { notificationMsg } = useUser();
+  const { notificationMsg, loggedIn } = useUser();
 
   return (
     <div className='flex flex-col min-h-screen bg-chocolate-white'>
@@ -20,6 +21,11 @@ function App() {
           <Route path='/' element={<p>Main content</p>} />
           <Route path='/register' element={<RegisterUser />} />
           <Route path='/login' element={<LoginUser />} />
+          {loggedIn &&
+            <>
+              <Route path='/create-review' element={<CreateReview />} />
+            </>
+          }
         </Routes>
       </div>
       <>
