@@ -1,13 +1,16 @@
 import { useFormContext } from "react-hook-form"
 import { ReviewFormType } from "../types/types";
+import ChocolateFlavorInputs from "./ChocolateFlavorInputs";
+import ChocolatePicturesInput from "./ChocolatePicturesInput";
 
 const ReviewDataInputs = () => {
 
-    const { register, formState: { errors } } = useFormContext<ReviewFormType>();
+    const { register, formState: { errors }, setValue, watch} = useFormContext<ReviewFormType>();
+
+    const ratings = [0, 1, 2, 3, 4, 5];
 
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="text-4xl text-chocolate-milk font-bold text-center">Create a Review</h2>
             <div>
                 <label htmlFor="title" className="text-chocolate-light text-2xl font-bold">Title</label>
                 <input
@@ -20,6 +23,9 @@ const ReviewDataInputs = () => {
                     <p className="text-red-700 font-bold">{errors.title?.message}</p>
                 }
             </div>
+
+            <ChocolatePicturesInput />
+
             <div className="flex gap-10">
                 <div className="flex-1">
                     <label htmlFor="chocolate" className="text-chocolate-light text-2xl font-bold">Chocolate</label>
@@ -37,15 +43,56 @@ const ReviewDataInputs = () => {
                     <label htmlFor="recommended" className="text-chocolate-light text-2xl font-bold">Do you recommend this chocolate?</label>
                     <input
                         type="checkbox"
-                        {...register("recommended", { required: "Recommendation is required" })}
+                        {...register("recommended")}
+                        onChange={(e) => setValue("recommended", e.target.checked)}
+                        checked={watch("recommended")}
                         className="w-full"
                         id="recommended"
                     />
                     {errors.recommended &&
-                        <p className="text-red-700 font-bold">{errors.title?.message}</p>
+                        <p className="text-red-700 font-bold">{errors.recommended?.message}</p>
                     }
                 </div>
             </div>
+            
+            <ChocolateFlavorInputs />
+
+            <div className="flex gap-10">
+                <div className="flex-1 flex-col flex">
+                    <label htmlFor="rating" className="text-chocolate-light text-2xl font-bold">Rate the Chocolate</label>
+                    <select
+                        defaultValue=""
+                        className=" border rounded p-1"
+                        {...register("rating", { required: "Rating is required" })}
+                    >
+                        <option disabled value="">
+                            Select rating
+                        </option>
+                        {ratings.map(rating => (
+                            <option key={rating} value={rating}>
+                                {rating}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.rating &&
+                        <p className="text-red-700 font-bold">{errors.rating?.message}</p>
+                    }
+                </div>
+                <div className="flex-1">
+                    <label htmlFor="price" className="text-chocolate-light text-2xl font-bold">Price</label>
+                    <input
+                        type="number"
+                        {...register("price", { required: "Price is required" })}
+                        min={1}
+                        id="price"
+                        className="border rounded w-full py-1 px-2"
+                    />
+                    {errors.price &&
+                        <p className="text-red-700 font-bold">{errors.price?.message}</p>
+                    }
+                </div>
+            </div>
+
             <div>
                 <label htmlFor="content" className="text-chocolate-light text-2xl font-bold">Content</label>
                 <textarea

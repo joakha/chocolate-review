@@ -1,4 +1,4 @@
-//constant values used by appplication
+//constant values used by application
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "";
 
