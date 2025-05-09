@@ -1,8 +1,9 @@
 import { FormProvider, useForm } from "react-hook-form"
 import { ReviewFormType } from "../types/types"
 import ReviewDataInputs from "./ReviewDataInputs";
+import { ReviewFormProps } from "../types/types"
 
-const ReviewForm = () => {
+const ReviewForm = ({ saveReview, isPending }: ReviewFormProps) => {
   const useFormMethods = useForm<ReviewFormType>({
     defaultValues: {
       recommended: false
@@ -12,8 +13,22 @@ const ReviewForm = () => {
   const { handleSubmit } = useFormMethods;
 
   const createReview = handleSubmit((review: ReviewFormType) => {
-    console.log(review)
-  })
+    const reviewFormData = new FormData();
+    reviewFormData.append("title", review.title);
+    reviewFormData.append("chocolate", review.chocolate);
+    reviewFormData.append("content", review.content);
+    reviewFormData.append("recommended", review.recommended.toString());
+    reviewFormData.append("rating", review.rating.toString());
+    reviewFormData.append("price", review.price.toString());
+
+    review.flavors.forEach((flavor, i) => {
+      reviewFormData.append(`flavors[${i}]`, flavor)
+    });
+
+    Array.from(review.pictures).forEach((picture) => {
+      reviewFormData.append("pictures", picture);
+    })
+  });
 
   return (
     <FormProvider {...useFormMethods}>

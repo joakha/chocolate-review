@@ -43,11 +43,17 @@ type ReviewFormType = {
     pictures: FileList,
 }
 
+type ReviewFormProps = {
+    isPending: boolean,
+    saveReview: (reviewFormData: FormData) => void
+}
+
 export type {
     RegisterInfoType,
     AuthNotification,
     UserContextType,
     UserProviderType,
     LoginInfoType,
-    ReviewFormType
+    ReviewFormType,
+    ReviewFormProps
 }
