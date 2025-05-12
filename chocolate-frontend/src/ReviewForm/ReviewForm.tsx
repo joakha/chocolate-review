@@ -13,6 +13,7 @@ const ReviewForm = ({ saveReview, isPending }: ReviewFormProps) => {
   const { handleSubmit } = useFormMethods;
 
   const createReview = handleSubmit((review: ReviewFormType) => {
+    console.log(review)
     const reviewFormData = new FormData();
     reviewFormData.append("title", review.title);
     reviewFormData.append("chocolate", review.chocolate);
@@ -28,6 +29,8 @@ const ReviewForm = ({ saveReview, isPending }: ReviewFormProps) => {
     Array.from(review.pictures).forEach((picture) => {
       reviewFormData.append("pictures", picture);
     })
+
+    saveReview(reviewFormData);
   });
 
   return (
@@ -35,13 +38,16 @@ const ReviewForm = ({ saveReview, isPending }: ReviewFormProps) => {
       <form onSubmit={createReview} className="flex flex-col 4">
         <ReviewDataInputs />
         <div>
-          <button type="submit" className="bg-chocolate-milk rounded-md mt-5 text-white p-2 font-bold text-2xl">
-            Create Review
+          <button
+            type="submit"
+            className="bg-chocolate-milk rounded-md mt-5 text-white p-2 font-bold text-2xl disabled:bg-chocolate-dark"
+            disabled={isPending}
+          >
+            {isPending ? "Creating Review" : "Create Review"}
           </button>
         </div>
       </form>
     </FormProvider>
-
   )
 }
 

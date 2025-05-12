@@ -6,8 +6,8 @@ import { validationResult } from "express-validator";
 
 const createReview = async (req: Request, res: Response) => {
     //check for errors from review POST validation
-    const validationErrors = validationResult(req);
-    if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
+    /*     const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() }); */
 
     //execute the rest
     try {
@@ -17,7 +17,7 @@ const createReview = async (req: Request, res: Response) => {
         const promises = pictures.map(async (picture) => {
             const b64 = Buffer.from(picture.buffer).toString("base64");
 
-            let URI = `data${picture.mimetype};base64${b64},`;
+            let URI = `data:${picture.mimetype};base64,${b64}`;
             const res = await cloudinary.v2.uploader.upload(URI);
 
             return res.url;

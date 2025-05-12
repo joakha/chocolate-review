@@ -8,7 +8,7 @@ export const CreateReview = () => {
 
   const { updateNotification } = useUser()
 
-  const { mutate, isPending } = useMutation({
+  const reviewMutation = useMutation({
     mutationFn: createReview,
     onSuccess: async () => {
       const notificationMsg: AuthNotification = {
@@ -29,13 +29,13 @@ export const CreateReview = () => {
   })
 
   const saveReview = (reviewFormData: FormData) => {
-    mutate(reviewFormData)
+    reviewMutation.mutate(reviewFormData);
   }
 
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-4xl text-chocolate-milk font-bold text-center">Create a Review</h2>
-      <ReviewForm saveReview={saveReview} isPending={isPending} />
+      <ReviewForm saveReview={saveReview} isPending={reviewMutation.isPending} />
     </div>
   )
 }

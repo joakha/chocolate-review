@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const FRONTEND_URL = "http://localhost:5173/";
+const FRONTEND_URL = "http://localhost:5173";
 
 const testerEmail= `testuser_${Date.now()}_email@testuseremail.com`;
 
