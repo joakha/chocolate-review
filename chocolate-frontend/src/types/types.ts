@@ -55,5 +55,5 @@ export type {
     UserProviderType,
     LoginInfoType,
     ReviewFormType,
-    ReviewFormProps
+    ReviewFormProps,
 }

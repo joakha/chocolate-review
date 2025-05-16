@@ -1,6 +1,6 @@
 import express from "express"
 import pictureUpload from "../middleware/pictureUpload";
-import { createReview } from "../controllers/reviewController";
+import { createReview, getReviews } from "../controllers/reviewController";
 import { validateJWT } from "../middleware/validateAppUser";
 import { validateCreateReview } from "../middleware/validateReview";
 
@@ -13,5 +13,10 @@ reviewRouter.post(
     validateCreateReview,
     createReview
 );
+
+reviewRouter.get("/",
+    validateJWT,
+    getReviews
+)
 
 export default reviewRouter

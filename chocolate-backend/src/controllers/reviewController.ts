@@ -5,9 +5,9 @@ import ReviewModel from "../mongodb/review";
 import { validationResult } from "express-validator";
 
 const createReview = async (req: Request, res: Response) => {
-    //check for errors from review POST validation
-    const validationErrors = validationResult(req);
-    if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
+    /*     //check for errors from review POST validation
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() }); */
 
     //execute the rest
     try {
@@ -39,6 +39,16 @@ const createReview = async (req: Request, res: Response) => {
     }
 }
 
+const getReviews = async (req: Request, res: Response) => {
+    try {
+        const chocolateReviews = await ReviewModel.find({ appUserId: req.appUserId });
+        res.json(chocolateReviews);
+    } catch (error) {
+        res.status(500).json({ message: "Error getting reviews!" });
+    }
+}
+
 export {
-    createReview
+    createReview,
+    getReviews
 }

@@ -1,4 +1,5 @@
 import { BACKEND_URL } from "../constants";
+import { Review } from "../../../chocolate-backend/src/types/types";
 
 const createReview = async (reviewFormData: FormData) => {
     const response = await fetch(`${BACKEND_URL}/api/reviews`, {
@@ -14,6 +15,19 @@ const createReview = async (reviewFormData: FormData) => {
     return response.json();
 }
 
+const getUserReviews = async (): Promise<Review[]> => {
+    const response = await fetch(`${BACKEND_URL}/api/reviews`, {
+        credentials: "include"
+    });
+
+    if (!response.ok) {
+        throw new Error("Error getting reviews!");
+    }
+
+    return response.json();
+};
+
 export {
-    createReview
+    createReview,
+    getUserReviews
 }

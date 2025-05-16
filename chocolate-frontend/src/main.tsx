@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { UserProvider } from './context/UserProvider.tsx'
 
 //disable query retries
@@ -12,7 +12,12 @@ const reactQueryClient = new QueryClient({
     queries: {
       retry: 0
     }
-  }
+  },
+  queryCache: new QueryCache({
+    onError: (error) => {
+      
+    }
+  })
 });
 
 createRoot(document.getElementById('root')!).render(

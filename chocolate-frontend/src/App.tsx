@@ -7,6 +7,7 @@ import { AuthNotification } from './components/AuthNotification'
 import { useUser } from './hooks/useUser'
 import LoginUser from './components/LoginUser'
 import { CreateReview } from './ReviewForm/CreateReview'
+import UserReviews from './components/UserReviews'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           {loggedIn &&
             <>
               <Route path='/create-review' element={<CreateReview />} />
+              <Route path='/your-reviews' element={<UserReviews />} />
             </>
           }
         </Routes>

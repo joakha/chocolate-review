@@ -46,20 +46,20 @@ const Header = () => {
           {loggedIn ? (
             <>
               <Link
-                to={"/user-reviews"}
-                className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold"
+                to={"/your-reviews"}
+                className="hover:cursor-pointer hover:bg-chocolate-milk rounded-md flex items-center bg-chocolate-light px-3 font-bold"
               >
                 Your Reviews
               </Link>
               <Link
                 to={"/user-comments"}
-                className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold"
+                className="hover:cursor-pointer hover:bg-chocolate-milk rounded-md flex items-center bg-chocolate-light px-3 font-bold"
 
               >
                 Your Comments
               </Link>
               <button
-                className="bg-chocolate-light px-3 font-bold hover:cursor-pointer rounded-md"
+                className="bg-chocolate-light hover:bg-chocolate-milk px-3 font-bold hover:cursor-pointer rounded-md"
                 onClick={logout}
               >
                 Logout
@@ -69,13 +69,13 @@ const Header = () => {
             <>
               <Link
                 to="/register"
-                className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold"
+                className="hover:cursor-pointer hover:bg-chocolate-milk rounded-md flex items-center bg-chocolate-light px-3 font-bold"
               >
                 Register
               </Link>
               <Link
                 to={"/login"}
-                className="hover:cursor-pointer rounded-md flex items-center bg-chocolate-light px-3 font-bold"
+                className="hover:cursor-pointer hover:bg-chocolate-milk rounded-md flex items-center bg-chocolate-light px-3 font-bold"
               >
                 Login
               </Link>
