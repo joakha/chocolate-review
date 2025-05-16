@@ -6,8 +6,8 @@ import { validationResult } from "express-validator";
 
 const createReview = async (req: Request, res: Response) => {
     //check for errors from review POST validation
-    /*     const validationErrors = validationResult(req);
-        if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() }); */
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
 
     //execute the rest
     try {

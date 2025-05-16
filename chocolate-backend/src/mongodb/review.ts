@@ -30,7 +30,7 @@ const reviewSchema = new Schema<Review>({
     },
     flavors: [{
         type: String,
-        required: true
+        required: true,
     }],
     price: {
         type: Number,

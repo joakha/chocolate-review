@@ -9,8 +9,8 @@ const reviewRouter = express.Router();
 reviewRouter.post(
     "/",
     validateJWT,
-    validateCreateReview,
     pictureUpload.array("pictures", 2),
+    validateCreateReview,
     createReview
 );
 

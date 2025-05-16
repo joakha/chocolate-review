@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 import path from "path"
 import { v2 as cloudinary } from "cloudinary"
 import reviewRouter from "./routes/reviewRouter";
+import { Request, Response } from "express";
 
 //tell typescript it's ok to attach appUserId to requests
 declare global {
@@ -55,6 +56,11 @@ chocolateBackendApp.use("/api/appUsers", appUserRouter);
 
 //routes for review operations
 chocolateBackendApp.use("/api/reviews", reviewRouter);
+
+//route all unmatched requests
+chocolateBackendApp.get("*", (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, "../../chocolate-frontend/dist/index.html"))
+})
 
 //finally run app
 chocolateBackendApp.listen(8080, () => {
