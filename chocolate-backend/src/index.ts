@@ -58,7 +58,7 @@ chocolateBackendApp.use("/api/appUsers", appUserRouter);
 chocolateBackendApp.use("/api/reviews", reviewRouter);
 
 //route all unmatched requests
-chocolateBackendApp.get("*", (req: Request, res: Response) => {
+chocolateBackendApp.get('/{*any}', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../chocolate-frontend/dist/index.html"))
 })
 
