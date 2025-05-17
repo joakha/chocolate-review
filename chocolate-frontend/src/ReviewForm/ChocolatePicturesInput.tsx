@@ -8,6 +8,7 @@ const ChocolatePicturesInput = () => {
         <div className="flex flex-col gap-4">
             <label htmlFor="pictures" className="text-chocolate-light text-2xl font-bold">Pictures (max 2)</label>
             <input
+                id="pictures"
                 type="file"
                 multiple
                 accept="image/*"

@@ -42,7 +42,7 @@ const createReview = async (req: Request, res: Response) => {
 const getReviews = async (req: Request, res: Response) => {
     try {
         const chocolateReviews = await ReviewModel.find({ appUserId: req.appUserId });
-        res.json(chocolateReviews);
+        return res.json(chocolateReviews);
     } catch (error) {
         res.status(500).json({ message: "Error getting reviews!" });
     }

@@ -61,6 +61,7 @@ const ReviewDataInputs = () => {
                 <div className="flex-1 flex-col flex">
                     <label htmlFor="rating" className="text-chocolate-light text-2xl font-bold">Rate the Chocolate</label>
                     <select
+                        id="rating"
                         defaultValue=""
                         className=" border rounded p-1"
                         {...register("rating", { required: "Rating is required" })}

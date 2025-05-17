@@ -3,10 +3,13 @@ import ReviewForm from "./ReviewForm"
 import { createReview } from "../api/review"
 import { AuthNotification } from "../types/types"
 import { useUser } from "../hooks/useUser"
+import { useNavigate } from "react-router-dom"
 
 export const CreateReview = () => {
 
   const { updateNotification } = useUser()
+
+  const navigate = useNavigate();
 
   const reviewMutation = useMutation({
     mutationFn: createReview,
@@ -17,6 +20,7 @@ export const CreateReview = () => {
       };
 
       updateNotification(notificationMsg);
+      navigate("/your-reviews");
     },
     onError: (error: Error) => {
       const notificationMsg: AuthNotification = {
