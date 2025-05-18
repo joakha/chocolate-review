@@ -46,8 +46,8 @@ test("users reviews should be displayed", async ({ page }) => {
     await expect(page.getByText("Trying out some chocolate")).toBeVisible();
     await expect(page.getByText("Hello, this is my first review.")).toBeVisible();
     await expect(page.getByText("Dark Chocolate")).toBeVisible();
-    await expect(page.getByText("Recommended")).toBeVisible();
+    await expect(page.getByText("Recommended").first()).toBeVisible();
     await expect(page.getByText("Decent")).toBeVisible();
     await expect(page.getByText("4€")).toBeVisible();
-    await expect(page.getByRole("link", { name: "View More" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "View More" }).first()).toBeVisible();
 });
