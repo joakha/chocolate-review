@@ -12,7 +12,7 @@ type Review = {
     chocolate: string,
     content: string,
     recommended: boolean,
-    rating: number,
+    rating: 0 | 1 | 2 | 3 | 4 | 5,
     flavors: string[],
     price: number,
     pictures: string[],

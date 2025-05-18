@@ -37,6 +37,17 @@ test("appUser should be able to create a review", async ({ page }) => {
 
     await page.locator("[name=content]").fill("Review test content");
 
-    await page.getByRole("button", {name: "Create Review"}).click();
+    await page.getByRole("button", { name: "Create Review" }).click();
     await expect(page.getByText("Created Your Review!")).toBeVisible();
+});
+
+test("users reviews should be displayed", async ({ page }) => {
+    await page.goto(`${FRONTEND_URL}/your-reviews`);
+    await expect(page.getByText("Trying out some chocolate")).toBeVisible();
+    await expect(page.getByText("Hello, this is my first review.")).toBeVisible();
+    await expect(page.getByText("Dark Chocolate")).toBeVisible();
+    await expect(page.getByText("Recommended")).toBeVisible();
+    await expect(page.getByText("Decent")).toBeVisible();
+    await expect(page.getByText("4€")).toBeVisible();
+    await expect(page.getByRole("link", { name: "View More" })).toBeVisible();
 });

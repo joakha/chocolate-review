@@ -17,7 +17,7 @@ const UserReviews = () => {
         queryKey: ["getUserReviews"],
         queryFn: getUserReviews,
         retry: false
-    })
+    });
 
     useEffect(() => {
         if (isError) {
@@ -27,7 +27,16 @@ const UserReviews = () => {
             };
             updateNotification(notificationMsg);
         }
-    }, [isError])
+    }, [isError]);
+
+    const scoreStrings = {
+        0: "Unbearable",
+        1: "Poor",
+        2: "Lacking",
+        3: "Decent",
+        4: "Good",
+        5: "Great"
+    };
 
     return (
         <div className="space-y-5">
@@ -37,7 +46,7 @@ const UserReviews = () => {
                     to={"/create-review"}
                     className="hover:cursor-pointer hover:bg-chocolate-milk rounded-md text-white flex items-center bg-chocolate-light p-3 font-bold"
                 >
-                    Create new Review
+                    Create New Review
                 </Link>
             </div>
             <div className="flex flex-col justify-center">
@@ -55,12 +64,13 @@ const UserReviews = () => {
                                 <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 flex gap-2 items-center">
                                     {review.recommended ? (
                                         <>
-                                            <FaRegThumbsUp /> <span className="text-green-300">Recommended</span>
+                                            <FaRegThumbsUp />
+                                            <span className="text-green-300">Recommended</span>
                                         </>
-
                                     ) : (
                                         <>
-                                            <FaRegThumbsDown /> <span className="text-red-300">Not Recommended</span>
+                                            <FaRegThumbsDown />
+                                            <span className="text-red-300">Not Recommended</span>
                                         </>
                                     )}
                                 </div>
@@ -71,8 +81,8 @@ const UserReviews = () => {
                                             <FaStar key={index} />
                                         ) : (
                                             <FaRegStar key={index} />
-                                        )
-                                    ))}
+                                        )))}
+                                        {scoreStrings[review.rating]}
                                 </div>
                                 <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 items-center flex gap-2">
                                     <IoPricetagsOutline /> {review.price}€
