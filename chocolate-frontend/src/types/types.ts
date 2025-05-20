@@ -47,7 +47,7 @@ type ReviewFormType = {
 type ReviewFormProps = {
     isPending: boolean,
     saveReview: (reviewFormData: FormData) => void,
-    review: Review
+    review?: Review
 }
 
 export type {

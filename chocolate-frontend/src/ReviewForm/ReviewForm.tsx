@@ -14,8 +14,10 @@ const ReviewForm = ({ saveReview, isPending, review }: ReviewFormProps) => {
   const { handleSubmit, reset } = useFormMethods;
 
   useEffect(() => {
-    const { pictures, ...rest } = review;
-    reset({...rest, pictures: undefined});
+    if (review) {
+      const { pictures, ...rest } = review;
+      reset({ ...rest, pictures: undefined });
+    }
   }, [review, reset])
 
   const createReview = handleSubmit((review: ReviewFormType) => {

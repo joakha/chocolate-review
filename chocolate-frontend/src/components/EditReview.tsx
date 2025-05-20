@@ -60,7 +60,11 @@ export const EditReview = () => {
     return (
         <div className="flex flex-col gap-4">
             <h2 className="text-4xl text-chocolate-milk font-bold text-center">Edit a Review</h2>
-            <ReviewForm review={review}  saveReview={saveReview} isPending={reviewMutation.isPending} />
+            {review ? (
+                <ReviewForm review={review} saveReview={saveReview} isPending={reviewMutation.isPending} />
+            ) : (
+                <p className="text-center">No review found!</p>
+            )}
         </div>
     )
 }
