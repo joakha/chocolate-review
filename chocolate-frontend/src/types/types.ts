@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { Review } from "../../../chocolate-backend/src/types/types"
 
 //registration form types
 type RegisterInfoType = {
@@ -45,7 +46,8 @@ type ReviewFormType = {
 
 type ReviewFormProps = {
     isPending: boolean,
-    saveReview: (reviewFormData: FormData) => void
+    saveReview: (reviewFormData: FormData) => void,
+    review: Review
 }
 
 export type {

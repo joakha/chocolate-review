@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import ReviewForm from "./ReviewForm"
+import ReviewForm from "../ReviewForm/ReviewForm"
 import { createReview } from "../api/review"
 import { AuthNotification } from "../types/types"
 import { useUser } from "../hooks/useUser"

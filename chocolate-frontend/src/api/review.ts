@@ -27,7 +27,20 @@ const getUserReviews = async (): Promise<Review[]> => {
     return response.json();
 };
 
+const getSpecificReview = async (reviewId: string): Promise<Review> => {
+    const response = await fetch(`${BACKEND_URL}/api/reviews/${reviewId}`, {
+        credentials: "include"
+    });
+
+    if (!response.ok) {
+        throw new Error("Error getting review!");
+    }
+
+    return response.json();
+};
+
 export {
     createReview,
-    getUserReviews
+    getUserReviews,
+    getSpecificReview
 }

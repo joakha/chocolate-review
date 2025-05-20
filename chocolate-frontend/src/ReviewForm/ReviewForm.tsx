@@ -2,18 +2,23 @@ import { FormProvider, useForm } from "react-hook-form"
 import { ReviewFormType } from "../types/types"
 import ReviewDataInputs from "./ReviewDataInputs";
 import { ReviewFormProps } from "../types/types"
+import { useEffect } from "react";
 
-const ReviewForm = ({ saveReview, isPending }: ReviewFormProps) => {
+const ReviewForm = ({ saveReview, isPending, review }: ReviewFormProps) => {
   const useFormMethods = useForm<ReviewFormType>({
     defaultValues: {
       recommended: false
     }
   });
 
-  const { handleSubmit } = useFormMethods;
+  const { handleSubmit, reset } = useFormMethods;
+
+  useEffect(() => {
+    const { pictures, ...rest } = review;
+    reset({...rest, pictures: undefined});
+  }, [review, reset])
 
   const createReview = handleSubmit((review: ReviewFormType) => {
-    console.log(review)
     const reviewFormData = new FormData();
     reviewFormData.append("title", review.title);
     reviewFormData.append("chocolate", review.chocolate);
