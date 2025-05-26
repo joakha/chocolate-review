@@ -42,6 +42,7 @@ type ReviewFormType = {
     flavors: string[],
     price: number,
     pictures: FileList,
+    pictureStrings: string[]
 }
 
 type ReviewFormProps = {

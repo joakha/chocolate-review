@@ -25,7 +25,7 @@ const createReview = async (req: Request, res: Response) => {
 
         const pictureURLs = await Promise.all(promises);
 
-        review.pictures = pictureURLs;
+        review.pictureStrings = pictureURLs;
         review.editedAt = new Date();
         review.appUserId = req.appUserId;
 

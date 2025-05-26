@@ -24,4 +24,9 @@ reviewRouter.get("/:id",
     getReviewById
 )
 
+reviewRouter.put("/:id",
+    validateJWT,
+    pictureUpload.array("pictures", 2)
+)
+
 export default reviewRouter

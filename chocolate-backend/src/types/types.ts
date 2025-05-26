@@ -15,7 +15,7 @@ type Review = {
     rating: 0 | 1 | 2 | 3 | 4 | 5,
     flavors: string[],
     price: number,
-    pictures: string[],
+    pictureStrings: string[],
     editedAt: Date
 }
 

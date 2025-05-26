@@ -55,7 +55,7 @@ const UserReviews = () => {
                         <div key={review._id} className="flex flex-col rounded-lg bg-chocolate-dark p-5 mb-10 gap-10">
                             <h3 className="text-2xl text-white font-bold">{review.title}</h3>
                             <div className="text-white">Updated: <span className="text-chocolate-white">{getFormattedFinnishDate(review.editedAt)}</span></div>
-                            <img className="w-1/4 border border-chocolate-light rounded-lg" src={review.pictures[0]} />
+                            <img className="w-1/4 border border-chocolate-light rounded-lg" src={review.pictureStrings[0]} />
                             <div className="whitespace-pre-line text-chocolate-white">{review.content}</div>
                             <div className="grid grid-cols-4 gap-2">
                                 <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 items-center flex gap-2">

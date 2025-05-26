@@ -32,10 +32,8 @@ function App() {
           }
         </Routes>
       </div>
-      <>
-        {notificationMsg && <AuthNotification />}
-        <Footer />
-      </>
+      {notificationMsg && <AuthNotification />}
+      <Footer />
     </div>
   )
 }

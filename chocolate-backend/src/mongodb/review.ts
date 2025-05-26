@@ -36,7 +36,7 @@ const reviewSchema = new Schema<Review>({
         type: Number,
         required: true
     },
-    pictures: [{
+    pictureStrings: [{
         type: String,
         required: true
     }],

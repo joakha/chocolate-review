@@ -9,7 +9,7 @@ import { getSpecificReview } from "../api/review"
 
 export const EditReview = () => {
 
-    const { updateNotification } = useUser()
+    const { updateNotification } = useUser();
 
     const { id } = useParams();
 
