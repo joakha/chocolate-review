@@ -39,8 +39,22 @@ const getSpecificReview = async (reviewId: string): Promise<Review> => {
     return response.json();
 };
 
+const updateReview = async (reviewFormData: FormData) => {
+    const response = await fetch(`${BACKEND_URL}/api/reviews/${reviewFormData.get("_id")}`, {
+        method: "PUT",
+        credentials: "include",
+        body: reviewFormData
+    });
+
+    if (!response.ok) {
+        throw new Error("Updating review was unsuccessful");
+    }
+
+    return response.json();
+}
 export {
     createReview,
     getUserReviews,
-    getSpecificReview
+    getSpecificReview,
+    updateReview
 }

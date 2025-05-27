@@ -42,11 +42,11 @@ const ChocolatePicturesInput = () => {
                 accept="image/*"
                 {...register("pictures", {
                     validate: (pictures: FileList) => {
-                        if (pictures.length === 0 || pictures.length + (pictureStrings?.length || 0) > 2) {
+                        const totalPictures = (pictures?.length || 0) + (pictureStrings?.length || 0);
+                        if (totalPictures === 0 || totalPictures > 2) {
                             return "At least one picture required and max is 2";
-                        } else {
-                            return true;
                         }
+                        return true;
                     }
                 })}
             />

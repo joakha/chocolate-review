@@ -17,22 +17,31 @@ const ReviewForm = ({ saveReview, isPending, review }: ReviewFormProps) => {
     reset(review);
   }, [review, reset])
 
-  const createReview = handleSubmit((review: ReviewFormType) => {
+  const createReview = handleSubmit((reviewData: ReviewFormType) => {
     const reviewFormData = new FormData();
-    reviewFormData.append("title", review.title);
-    reviewFormData.append("chocolate", review.chocolate);
-    reviewFormData.append("content", review.content);
-    reviewFormData.append("recommended", review.recommended.toString());
-    reviewFormData.append("rating", review.rating.toString());
-    reviewFormData.append("price", review.price.toString());
+    if (review) reviewFormData.append("_id", review._id);
+    reviewFormData.append("title", reviewData.title);
+    reviewFormData.append("chocolate", reviewData.chocolate);
+    reviewFormData.append("content", reviewData.content);
+    reviewFormData.append("recommended", reviewData.recommended.toString());
+    reviewFormData.append("rating", reviewData.rating.toString());
+    reviewFormData.append("price", reviewData.price.toString());
 
-    review.flavors.forEach((flavor, i) => {
+    reviewData.flavors.forEach((flavor, i) => {
       reviewFormData.append(`flavors[${i}]`, flavor)
     });
 
-    Array.from(review.pictures).forEach((picture) => {
-      reviewFormData.append("pictures", picture);
-    })
+    if (reviewData.pictureStrings) {
+      reviewData.pictureStrings.forEach((pictureString, i) => {
+        reviewFormData.append(`pictureStrings[${i}]`, pictureString);
+      })
+    }
+
+    if (reviewData.pictures) {
+      Array.from(reviewData.pictures).forEach((picture) => {
+        reviewFormData.append("pictures", picture);
+      })
+    }
 
     saveReview(reviewFormData);
   });

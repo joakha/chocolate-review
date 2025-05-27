@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import ReviewForm from "../ReviewForm/ReviewForm"
-import { createReview } from "../api/review"
+import { updateReview } from "../api/review"
 import { AuthNotification } from "../types/types"
 import { useUser } from "../hooks/useUser"
 import { useNavigate, useParams } from "react-router-dom"
@@ -15,7 +15,7 @@ export const EditReview = () => {
 
     const navigate = useNavigate();
 
-    const { data: review, isError, error } = useQuery({
+    const { data: review, isError, error, isFetching } = useQuery({
         queryKey: ["getSpecificReview"],
         queryFn: () => getSpecificReview(id || ""),
         retry: false,
@@ -33,10 +33,10 @@ export const EditReview = () => {
     }, [isError]);
 
     const reviewMutation = useMutation({
-        mutationFn: createReview,
+        mutationFn: updateReview,
         onSuccess: async () => {
             const notificationMsg: AuthNotification = {
-                msg: "Created Your Review!",
+                msg: "Updated Your Review!",
                 type: "SUCCESSFUL"
             };
 
@@ -62,6 +62,8 @@ export const EditReview = () => {
             <h2 className="text-4xl text-chocolate-milk font-bold text-center">Edit a Review</h2>
             {review ? (
                 <ReviewForm review={review} saveReview={saveReview} isPending={reviewMutation.isPending} />
+            ) : isFetching ? (
+                <p className="text-center">Loading review...</p>
             ) : (
                 <p className="text-center">No review found!</p>
             )}

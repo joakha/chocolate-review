@@ -58,8 +58,44 @@ const getReviewById = async (req: Request, res: Response) => {
     }
 }
 
+const updateReview = async (req: Request, res: Response) => {
+    try {
+        const reviewUpdate: Review = req.body
+        reviewUpdate.editedAt = new Date();
+
+        const review = await ReviewModel.findOneAndUpdate({
+            _id: reviewUpdate._id,
+            appUserId: req.appUserId
+        }, reviewUpdate, { new: true })
+
+        if (!review) return res.status(404).json({ message: "Review not found!" });
+
+        const pictures = req.files as Express.Multer.File[];
+
+        const promises = pictures.map(async (picture) => {
+            const b64 = Buffer.from(picture.buffer).toString("base64");
+
+            let URI = `data:${picture.mimetype};base64,${b64}`;
+            const res = await cloudinary.v2.uploader.upload(URI);
+
+            return res.url;
+        })
+
+        const pictureURLs = await Promise.all(promises);
+
+        review.pictureStrings = [...pictureURLs, ...(reviewUpdate.pictureStrings || [])];
+
+        await review.save();
+
+        return res.status(201).send(review);
+    } catch (err) {
+        return res.status(500).json({ message: "Server error!" });
+    }
+}
+
 export {
     createReview,
     getReviews,
-    getReviewById
+    getReviewById,
+    updateReview
 }
