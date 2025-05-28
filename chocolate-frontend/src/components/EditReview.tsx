@@ -34,7 +34,7 @@ export const EditReview = () => {
 
     const reviewMutation = useMutation({
         mutationFn: updateReview,
-        onSuccess: async () => {
+        onSuccess: () => {
             const notificationMsg: AuthNotification = {
                 msg: "Updated Your Review!",
                 type: "SUCCESSFUL"

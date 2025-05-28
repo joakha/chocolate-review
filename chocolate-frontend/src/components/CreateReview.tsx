@@ -13,7 +13,7 @@ export const CreateReview = () => {
 
   const reviewMutation = useMutation({
     mutationFn: createReview,
-    onSuccess: async () => {
+    onSuccess: () => {
       const notificationMsg: AuthNotification = {
         msg: "Created Your Review!",
         type: "SUCCESSFUL"

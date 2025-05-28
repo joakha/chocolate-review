@@ -51,3 +51,21 @@ test("users reviews should be displayed", async ({ page }) => {
     await expect(page.getByText("4€")).toBeVisible();
     await expect(page.getByRole("link", { name: "View More" }).first()).toBeVisible();
 });
+
+test("User should be able to edit their reviews", async ({ page }) => {
+    await page.goto(`${FRONTEND_URL}/your-reviews`);
+    await page.getByRole("link", { name: "View More" }).first().click();
+
+    await page.waitForSelector('[name=title]', { state: "attached" });
+    await expect(page.locator('[name=title]')).toHaveValue("Trying out some chocolate");
+    await page.locator('[name=title]').fill("Trying out some chocolate edited");
+    await page.getByRole("button", { name: "Create Review" }).click();
+    await expect(page.getByText("Updated Your Review!")).toBeVisible();
+
+    await page.getByRole("link", { name: "View More" }).first().click();
+
+    await expect(page.locator('[name=title]')).toHaveValue("Trying out some chocolate edited");
+    await page.locator('[name=title]').fill("Trying out some chocolate");
+    await page.getByRole("button", { name: "Create Review" }).click();
+    await expect(page.getByText("Trying out some chocolate")).toBeVisible();
+})
