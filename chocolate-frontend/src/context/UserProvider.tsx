@@ -1,10 +1,10 @@
 import { UserContext } from "./UserContext";
-import { AuthNotification, UserProviderType, } from "../types/types";
+import { AuthNotification, ProviderProps, } from "../types/types";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { verifyJWT } from "../api/user";
 
-export const UserProvider = ({ children }: UserProviderType) => {
+export const UserProvider = ({ children }: ProviderProps) => {
 
     const updateNotification = (msg: AuthNotification) => {
         setNotificationMsg(msg);

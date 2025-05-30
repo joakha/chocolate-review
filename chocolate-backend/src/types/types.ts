@@ -19,7 +19,17 @@ type Review = {
     editedAt: Date
 }
 
+type ReviewSearch = {
+    data: Review[],
+    pagination: {
+        reviewTotal: number,
+        selectedPage: number,
+        pageTotal: number
+    }
+}
+
 export type {
     AppUser,
-    Review
+    Review,
+    ReviewSearch
 }

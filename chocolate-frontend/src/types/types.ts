@@ -15,6 +15,11 @@ type LoginInfoType = {
     password: string
 }
 
+//types for contexts
+type ProviderProps = {
+    children: ReactNode
+}
+
 //types for UserContext
 type AuthNotification = {
     msg: string,
@@ -26,10 +31,6 @@ type UserContextType = {
     closeNotification: () => void,
     notificationMsg: AuthNotification | null,
     loggedIn: boolean
-}
-
-type UserProviderType = {
-    children: ReactNode
 }
 
 //review form types
@@ -51,12 +52,22 @@ type ReviewFormProps = {
     review?: Review
 }
 
+//types for FindContext
+type findContextType = {
+    title: string,
+    chocolate: string,
+    editedAt: Date,
+    reviewId: string,
+    saveFindCriteria: (title: string, chocolate: string, editedAt: Date) => void
+}
+
 export type {
     RegisterInfoType,
     AuthNotification,
     UserContextType,
-    UserProviderType,
+    ProviderProps,
     LoginInfoType,
     ReviewFormType,
     ReviewFormProps,
+    findContextType
 }

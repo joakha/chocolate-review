@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import ReviewModel from "../mongodb/review";
+import { ReviewSearch } from "../types/types";
 
 const findReviews = async (req: Request, res: Response) => {
     try {
@@ -10,7 +11,7 @@ const findReviews = async (req: Request, res: Response) => {
         const reviews = await ReviewModel.find().skip(skipValue).limit(reviewPerPage);
         const reviewTotal = await ReviewModel.countDocuments();
 
-        const response = {
+        const response: ReviewSearch = {
             data: reviews,
             pagination: {
                 reviewTotal,
@@ -25,3 +26,7 @@ const findReviews = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Something went wrong!" });
     }
 };
+
+export {
+    findReviews
+}
