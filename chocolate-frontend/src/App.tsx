@@ -9,6 +9,7 @@ import LoginUser from './components/LoginUser'
 import { CreateReview } from './components/CreateReview'
 import EditReview from './components/EditReview'
 import UserReviews from './components/UserReviews'
+import FindReviews from './components/FindReviews'
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
     <div className='flex flex-col min-h-screen bg-chocolate-white'>
       <Header />
       <Banner />
+      <div className='container mx-auto'>
+        <FindReviews />
+      </div>
       <div className='container mx-auto py-12 flex-1'>
         <Routes>
           <Route path='/' element={<p>Main content</p>} />
