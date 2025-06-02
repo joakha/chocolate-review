@@ -4,10 +4,13 @@ import { PiSubtitlesBold } from 'react-icons/pi';
 import { GiChocolateBar } from "react-icons/gi";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from 'react-router-dom';
 
 const FindReviews = () => {
 
     const find = useFind();
+
+    const navigate = useNavigate();
 
     //local states for this component
     const [title, setTitle] = useState<string>(find.title);
@@ -18,27 +21,28 @@ const FindReviews = () => {
     const submitCriteria = (e: FormEvent) => {
         e.preventDefault();
         find.saveFindCriteria(title, chocolate, editedAt);
+        navigate("/find-reviews");
     }
 
     return (
         <form
             onSubmit={submitCriteria}
-            className='p-4 bg-chocolate-dark rounded-xl grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4'
+            className='p-4 bg-chocolate-dark rounded-xl grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-4'
         >
             <div className='flex items-center bg-chocolate-light rounded-xl p-2 gap-2'>
-                <PiSubtitlesBold />
+                <PiSubtitlesBold size={24} />
                 <input
                     placeholder='Title...'
-                    className='text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
+                    className='w-full text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
             <div className='flex items-center bg-chocolate-light rounded-xl p-2 gap-2'>
-                <GiChocolateBar />
+                <GiChocolateBar size={24} />
                 <input
                     placeholder='Chocolate...'
-                    className='text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
+                    className='w-full text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
                     value={chocolate}
                     onChange={(e) => setChocolate(e.target.value)}
                 />
@@ -51,7 +55,18 @@ const FindReviews = () => {
                     selectsStart
                     startDate={editedAt}
                     placeholderText='Date'
+                    wrapperClassName='min-w-full'
                 />
+            </div>
+            <div className='flex gap-2'>
+                <button className='w-2/3 bg-chocolate-milk text-white h-full p-2 font-bold rounded-xl text-md hover:bg-chocolate-white hover:text-chocolate-milk'
+                >
+                    Find
+                </button>
+                <button className='w-1/3 bg-chocolate-milk text-white h-full p-2 font-bold rounded-xl text-md hover:bg-chocolate-white hover:text-chocolate-milk'
+                >
+                    Reset
+                </button>
             </div>
         </form>
     )

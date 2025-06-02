@@ -61,6 +61,13 @@ type findContextType = {
     saveFindCriteria: (title: string, chocolate: string, editedAt: Date) => void
 }
 
+type FindOptions = {
+    title?: string,
+    chocolate?: string,
+    editedAt?: string,
+    page?: string
+}
+
 export type {
     RegisterInfoType,
     AuthNotification,
@@ -69,5 +76,6 @@ export type {
     LoginInfoType,
     ReviewFormType,
     ReviewFormProps,
-    findContextType
+    findContextType,
+    FindOptions
 }

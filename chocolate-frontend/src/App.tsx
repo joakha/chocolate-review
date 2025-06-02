@@ -10,6 +10,7 @@ import { CreateReview } from './components/CreateReview'
 import EditReview from './components/EditReview'
 import UserReviews from './components/UserReviews'
 import FindReviews from './components/FindReviews'
+import FindResults from './components/FindResults'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' element={<p>Main content</p>} />
           <Route path='/register' element={<RegisterUser />} />
           <Route path='/login' element={<LoginUser />} />
+          <Route path='/find-reviews' element={<FindResults />} />
           {loggedIn &&
             <>
               <Route path='/create-review' element={<CreateReview />} />

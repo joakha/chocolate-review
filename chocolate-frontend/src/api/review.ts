@@ -1,5 +1,6 @@
 import { BACKEND_URL } from "../constants";
-import { Review } from "../../../chocolate-backend/src/types/types";
+import { Review, ReviewSearch } from "../../../chocolate-backend/src/types/types";
+import { FindOptions } from "../types/types";
 
 const createReview = async (reviewFormData: FormData) => {
     const response = await fetch(`${BACKEND_URL}/api/reviews`, {
@@ -52,9 +53,24 @@ const updateReview = async (reviewFormData: FormData) => {
 
     return response.json();
 }
+
+const findReviews = async (options: FindOptions): Promise<ReviewSearch> => {
+    const params = new URLSearchParams();
+    params.append("title", options.title || "");
+    params.append("chocolate", options.chocolate || "");
+    params.append("editedAt", options.editedAt || "");
+
+    const response = await fetch(`${BACKEND_URL}/api/find-reviews/find?${params}`);
+
+    if (!response.ok) throw new Error("Error finding reviews!");
+
+    return response.json();
+}
+
 export {
     createReview,
     getUserReviews,
     getSpecificReview,
-    updateReview
+    updateReview,
+    findReviews
 }
