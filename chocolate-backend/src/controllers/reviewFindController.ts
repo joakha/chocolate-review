@@ -4,7 +4,7 @@ import { ReviewSearch } from "../types/types";
 
 const findReviews = async (req: Request, res: Response) => {
     try {
-        const reviewPerPage = 6;
+        const reviewPerPage = 2;
         const selectedPage = parseInt(req.query.page ? req.query.page.toString() : "1");
         //depending on selected page, skip all reviews before that page
         const skipValue = (selectedPage - 1) * reviewPerPage;

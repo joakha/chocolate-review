@@ -8,6 +8,7 @@ import { GiChocolateBar } from "react-icons/gi";
 import { FaRegThumbsDown, FaRegThumbsUp, FaRegStar, FaStar } from "react-icons/fa";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { getFormattedFinnishDate } from "../lib/dateFunctions"
+import { scoreStrings } from "../constants"
 
 const UserReviews = () => {
 
@@ -28,15 +29,6 @@ const UserReviews = () => {
             updateNotification(notificationMsg);
         }
     }, [isError]);
-
-    const scoreStrings = {
-        0: "Unbearable",
-        1: "Poor",
-        2: "Lacking",
-        3: "Decent",
-        4: "Good",
-        5: "Great"
-    };
 
     return (
         <div className="space-y-5">
