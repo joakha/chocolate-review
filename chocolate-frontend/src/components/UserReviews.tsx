@@ -48,7 +48,6 @@ const UserReviews = () => {
                             <h3 className="text-2xl text-white font-bold">{review.title}</h3>
                             <div className="text-white">Updated: <span className="text-chocolate-white">{getFormattedFinnishDate(review.editedAt)}</span></div>
                             <img className="w-1/4 border border-chocolate-light rounded-lg" src={review.pictureStrings[0]} />
-                            <div className="whitespace-pre-line text-chocolate-white">{review.content}</div>
                             <div className="grid grid-cols-4 gap-2">
                                 <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 items-center flex gap-2">
                                     <GiChocolateBar /> {review.chocolate}
@@ -74,12 +73,13 @@ const UserReviews = () => {
                                         ) : (
                                             <FaRegStar key={index} />
                                         )))}
-                                        {scoreStrings[review.rating]}
+                                    {scoreStrings[review.rating]}
                                 </div>
                                 <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 items-center flex gap-2">
                                     <IoPricetagsOutline /> {review.price}€
                                 </div>
                             </div>
+                            <div className="whitespace-pre-line text-chocolate-white">{review.content}</div>
                             <div className="flex justify-start">
                                 <Link
                                     to={`/edit-review/${review._id}`}
