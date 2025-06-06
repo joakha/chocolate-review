@@ -3,6 +3,7 @@ import { useFind } from "../hooks/useFind";
 import { findReviews } from "../api/review";
 import { useState } from "react";
 import FindCard from "./FindCard";
+import FindResultsPagination from "./FindResultsPagination";
 
 const FindResults = () => {
     const find = useFind();
@@ -21,8 +22,6 @@ const FindResults = () => {
         queryFn: () => findReviews(options)
     })
 
-    console.log(reviewsFindData)
-
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-5 text-white">
             <div className="flex rounded-xl flex-col items-center gap-5">
@@ -35,6 +34,13 @@ const FindResults = () => {
                 {reviewsFindData?.data.map(review => (
                     <FindCard review={review} />
                 ))}
+                <div>
+                    <FindResultsPagination
+                        pageTotal={reviewsFindData?.pagination.pageTotal || 1}
+                        selectedPage={reviewsFindData?.pagination.selectedPage || 1}
+                        paginationChange={(selectedPage) => setSelectedPage(selectedPage)}
+                    />
+                </div>
             </div>
             <div className="bg-chocolate-dark flex justify-center rounded-xl p-5 h-fit sticky top-10">
                 <div>

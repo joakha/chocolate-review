@@ -61,11 +61,19 @@ type findContextType = {
     saveFindCriteria: (title: string, chocolate: string, editedAt: Date) => void
 }
 
+//types for find query options
 type FindOptions = {
     title?: string,
     chocolate?: string,
     editedAt?: string,
-    page?: string
+    selectedPage?: string
+}
+
+//types for pagination
+type PaginationProps = {
+    selectedPage: number,
+    pageTotal: number,
+    paginationChange: (selectedPage: number) => void
 }
 
 export type {
@@ -77,5 +85,6 @@ export type {
     ReviewFormType,
     ReviewFormProps,
     findContextType,
-    FindOptions
+    FindOptions,
+    PaginationProps
 }
