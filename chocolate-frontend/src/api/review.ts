@@ -60,6 +60,16 @@ const findReviews = async (options: FindOptions): Promise<ReviewSearch> => {
     params.append("chocolate", options.chocolate || "");
     params.append("editedAt", options.editedAt || "");
     params.append("selectedPage", options.selectedPage || "");
+    params.append("price", options.price || "");
+    params.append("sort", options.sort || "");
+
+    options.flavors?.forEach(flavor => {
+        params.append("flavors", flavor);
+    })
+
+    options.ratings?.forEach(rating => {
+        params.append("ratings", rating);
+    })
 
     const response = await fetch(`${BACKEND_URL}/api/find-reviews/find?${params}`);
 

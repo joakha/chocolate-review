@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ChangeEvent, ReactNode } from "react"
 import { Review } from "../../../chocolate-backend/src/types/types"
 
 //registration form types
@@ -66,7 +66,11 @@ type FindOptions = {
     title?: string,
     chocolate?: string,
     editedAt?: string,
-    selectedPage?: string
+    selectedPage?: string,
+    flavors?: string[],
+    ratings?: string[]
+    price?: string,
+    sort?: string
 }
 
 //types for pagination
@@ -74,6 +78,12 @@ type PaginationProps = {
     selectedPage: number,
     pageTotal: number,
     paginationChange: (selectedPage: number) => void
+}
+
+//types for Filters
+type FilterProps = {
+    filteredRatings: string[],
+    selectFilter: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type {
@@ -86,5 +96,6 @@ export type {
     ReviewFormProps,
     findContextType,
     FindOptions,
-    PaginationProps
+    PaginationProps,
+    FilterProps
 }

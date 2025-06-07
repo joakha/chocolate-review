@@ -5,6 +5,19 @@ import { ReviewSearch } from "../types/types";
 const findReviews = async (req: Request, res: Response) => {
 
     let findQuery: any = {};
+    let sort = {};
+
+    switch (req.query.sortOption) {
+        case "rating":
+            sort = { rating: -1 }
+            break;
+        case "priceASC":
+            sort = { price: 1 }
+            break;
+        case "priceDESC":
+            sort = { price: -1 }
+            break;
+    }
 
     if (req.query.title) {
         findQuery.title = new RegExp(req.query.title as string, "i");
@@ -43,7 +56,11 @@ const findReviews = async (req: Request, res: Response) => {
         const selectedPage = parseInt(req.query.selectedPage ? req.query.selectedPage.toString() : "1");
         //depending on selected page, skip all reviews before that page
         const skipValue = (selectedPage - 1) * reviewPerPage;
-        const reviews = await ReviewModel.find(findQuery).skip(skipValue).limit(reviewPerPage);
+        const reviews = await ReviewModel.find(findQuery)
+        .sort(sort)
+        .skip(skipValue)
+        .limit(reviewPerPage);
+
         const reviewTotal = await ReviewModel.countDocuments(findQuery);
 
         const response: ReviewSearch = {
