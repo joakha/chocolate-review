@@ -47,7 +47,7 @@ const findReviews = async (req: Request, res: Response) => {
 
     if (req.query.price) {
         findQuery.price = {
-            $lte: req.query.toString()
+            $lte: req.query.price
         }
     }
 

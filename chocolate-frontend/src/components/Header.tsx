@@ -38,11 +38,11 @@ const Header = () => {
 
   return (
     <header className="bg-chocolate-dark py-8 text-white">
-      <div className="container mx-auto flex justify-between">
-        <span className="text-3xl font-bold tracking-tighter">
+      <div className="flex justify-between">
+        <span className="ml-4 text-3xl font-bold tracking-tighter">
           <Link to="/">Chocolate Review App</Link>
         </span>
-        <span className="flex space-x-2">
+        <span className="flex gap-2 mr-4">
           {loggedIn ? (
             <>
               <Link

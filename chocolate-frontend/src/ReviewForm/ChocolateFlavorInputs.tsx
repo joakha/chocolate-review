@@ -1,29 +1,9 @@
 import { useFormContext } from "react-hook-form";
 import { ReviewFormType } from "../types/types";
+import { flavors } from "../constants";
 
 const ChocolateFlavorInputs = () => {
-    const flavors = [
-        "Dark Chocolate",
-        "Milk Chocolate",
-        "Hazelnut",
-        "Caramel",
-        "Sea Salt",
-        "Mint",
-        "Orange",
-        "Coffee",
-        "Raspberry",
-        "Chili",
-        "Toffee",
-        "Almond",
-        "White Chocolate",
-        "Coconut",
-        "Cinnamon",
-        "Lavender",
-        "Matcha",
-        "Cherry",
-        "Rum",
-        "Cookie"
-    ];
+
 
     const { register, formState: { errors }, watch } = useFormContext<ReviewFormType>();
     const selectedFlavors = watch("flavors") || [];

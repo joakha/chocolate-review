@@ -32,6 +32,7 @@ const FindReviews = () => {
             <div className='flex items-center bg-chocolate-light rounded-xl p-2 gap-2'>
                 <PiSubtitlesBold size={24} />
                 <input
+                    id='title'
                     placeholder='Title...'
                     className='w-full text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
                     value={title}
@@ -41,6 +42,7 @@ const FindReviews = () => {
             <div className='flex items-center bg-chocolate-light rounded-xl p-2 gap-2'>
                 <GiChocolateBar size={24} />
                 <input
+                    id='chocolate'
                     placeholder='Chocolate...'
                     className='w-full text-md focus:outline-none bg-chocolate-light text-white placeholder-slate-300'
                     value={chocolate}
@@ -49,6 +51,7 @@ const FindReviews = () => {
             </div>
             <div>
                 <DatePicker
+                    id='editedAt'
                     className='min-w-full bg-chocolate-light rounded-xl p-2 focus:outline-none text-white placeholder-slate-300'
                     selected={editedAt}
                     onChange={(date) => setEditedAt(date as Date)}

@@ -11,22 +11,38 @@ const FindResults = () => {
 
     const [selectedPage, setSelectedPage] = useState<number>(1);
     const [filteredRatings, setFilteredRatings] = useState<string[]>([]);
+    const [filteredFlavors, setFilteredFlavors] = useState<string[]>([]);
+    const [filteredPrice, setFilteredPrice] = useState<number | undefined>();
 
     const filterRatings = (e: ChangeEvent<HTMLInputElement>) => {
         const rating = e.target.value;
 
-        setFilteredRatings(prevFilteredRatings => 
-            e.target.checked 
-            ? [...prevFilteredRatings, rating]
-            : prevFilteredRatings.filter(arrayRating => arrayRating !== rating)
+        setFilteredRatings(prevFilteredRatings =>
+            e.target.checked
+                ? [...prevFilteredRatings, rating]
+                : prevFilteredRatings.filter(arrayRating => arrayRating !== rating)
         );
     };
+
+    const filterFlavors = (e: ChangeEvent<HTMLInputElement>) => {
+        const flavor = e.target.value;
+
+        setFilteredFlavors(prevFilteredFlavors =>
+            e.target.checked
+                ? [...prevFilteredFlavors, flavor]
+                : prevFilteredFlavors.filter(arrayFlavor => arrayFlavor !== flavor)
+        );
+    };
+
 
     const options = {
         title: find.title,
         chocolate: find.chocolate,
         editedAt: find.editedAt.toISOString(),
-        selectedPage: selectedPage.toString()
+        selectedPage: selectedPage.toString(),
+        ratings: filteredRatings,
+        flavors: filteredFlavors,
+        price: filteredPrice?.toString()
     };
 
     const { data: reviewsFindData } = useQuery({
@@ -43,8 +59,11 @@ const FindResults = () => {
                         {find.title ? ` with title "${find.title}"` : ""}
                     </span>
                 </div>
-                {reviewsFindData?.data.map(review => (
-                    <FindCard review={review} />
+                {reviewsFindData?.data.map((review) => (
+                    <FindCard
+                        key={review._id}
+                        review={review}
+                    />
                 ))}
                 <div>
                     <FindResultsPagination
@@ -57,7 +76,14 @@ const FindResults = () => {
             <div className="bg-chocolate-dark flex justify-center rounded-xl p-5 h-fit sticky top-10">
                 <div>
                     <h2 className="text-lg font-semibold">Filter Reviews:</h2>
-                    <Filters filteredRatings={filteredRatings} />
+                    <Filters
+                        filteredRatings={filteredRatings}
+                        filterRatings={filterRatings}
+                        filteredFlavors={filteredFlavors}
+                        filterFlavors={filterFlavors}
+                        filteredPrice={filteredPrice}
+                        filterPrice={(value?: number) => setFilteredPrice(value)}
+                    />
                 </div>
             </div>
         </div>

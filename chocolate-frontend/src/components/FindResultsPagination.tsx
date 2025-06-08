@@ -12,7 +12,7 @@ const FindResultsPagination = ({ pageTotal, paginationChange, selectedPage }: Pa
         <div className='flex justify-center'>
             <ul className='flex gap-5'>
                 {paginationNumbers.map((number) => (
-                    <li className={`w-[50px] h-[50px] rounded-full flex justify-center ${selectedPage === number ? "bg-chocolate-milk" : "bg-chocolate-dark"}`}>
+                    <li key={number} className={`w-[50px] h-[50px] rounded-full flex justify-center ${selectedPage === number ? "bg-chocolate-milk" : "bg-chocolate-dark"}`}>
                         <button className='w-full h-full' onClick={() => paginationChange(number)}>
                             {number}
                         </button>

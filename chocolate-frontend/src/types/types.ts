@@ -83,7 +83,11 @@ type PaginationProps = {
 //types for Filters
 type FilterProps = {
     filteredRatings: string[],
-    selectFilter: (e: ChangeEvent<HTMLInputElement>) => void
+    filterRatings: (e: ChangeEvent<HTMLInputElement>) => void,
+    filteredFlavors: string[],
+    filterFlavors: (e: ChangeEvent<HTMLInputElement>) => void,
+    filteredPrice?: number,
+    filterPrice: (value?: number) => void,
 }
 
 export type {
