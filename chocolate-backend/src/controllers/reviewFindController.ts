@@ -7,14 +7,17 @@ const findReviews = async (req: Request, res: Response) => {
     let findQuery: any = {};
     let sort = {};
 
-    switch (req.query.sortOption) {
-        case "rating":
+    switch (req.query.sort) {
+        case "Highest Rating":
             sort = { rating: -1 }
             break;
-        case "priceASC":
+        case "Lowest Rating":
+            sort = { rating: 1 }
+            break;
+        case "Lowest Price":
             sort = { price: 1 }
             break;
-        case "priceDESC":
+        case "Highest Price":
             sort = { price: -1 }
             break;
     }
@@ -57,9 +60,9 @@ const findReviews = async (req: Request, res: Response) => {
         //depending on selected page, skip all reviews before that page
         const skipValue = (selectedPage - 1) * reviewPerPage;
         const reviews = await ReviewModel.find(findQuery)
-        .sort(sort)
-        .skip(skipValue)
-        .limit(reviewPerPage);
+            .sort(sort)
+            .skip(skipValue)
+            .limit(reviewPerPage);
 
         const reviewTotal = await ReviewModel.countDocuments(findQuery);
 

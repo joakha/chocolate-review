@@ -13,6 +13,7 @@ const FindResults = () => {
     const [filteredRatings, setFilteredRatings] = useState<string[]>([]);
     const [filteredFlavors, setFilteredFlavors] = useState<string[]>([]);
     const [filteredPrice, setFilteredPrice] = useState<number | undefined>();
+    const [sort, setSort] = useState<string>()
 
     const filterRatings = (e: ChangeEvent<HTMLInputElement>) => {
         const rating = e.target.value;
@@ -42,7 +43,8 @@ const FindResults = () => {
         selectedPage: selectedPage.toString(),
         ratings: filteredRatings,
         flavors: filteredFlavors,
-        price: filteredPrice?.toString()
+        price: filteredPrice?.toString(),
+        sort
     };
 
     const { data: reviewsFindData } = useQuery({
@@ -51,13 +53,20 @@ const FindResults = () => {
     });
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-5 text-white">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1fr_350px] gap-5 text-white">
             <div className="flex rounded-xl flex-col items-center gap-5">
-                <div className="flex justify-between p-5">
+                <div className="flex w-full justify-between">
                     <span className="text-2xl font-bold text-chocolate-dark">
                         Found {reviewsFindData?.pagination.reviewTotal} reviews
                         {find.title ? ` with title "${find.title}"` : ""}
                     </span>
+                    <select value={sort} onChange={(e) => setSort(e.target.value)} className="p-2 text-black border rounded-md">
+                        <option value="" className="text-gray-500">Sort</option>
+                        <option value="Highest Rating">Highest Rating</option>
+                        <option value="Lowest Rating">Lowest Rating</option>
+                        <option value="Highest Price">Highest Price</option>
+                        <option value="Lowest Price">Lowest Price</option>
+                    </select>
                 </div>
                 {reviewsFindData?.data.map((review) => (
                     <FindCard
@@ -73,7 +82,7 @@ const FindResults = () => {
                     />
                 </div>
             </div>
-            <div className="bg-chocolate-dark flex justify-center rounded-xl p-5 h-fit sticky top-10">
+            <div className="bg-chocolate-dark flex justify-center rounded-xl mb-10 p-5 h-fit lg:sticky lg:top-10">
                 <div>
                     <h2 className="text-lg font-semibold">Filter Reviews:</h2>
                     <Filters

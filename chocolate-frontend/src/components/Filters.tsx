@@ -51,7 +51,7 @@ export const Filters = ({
                 <select
                     value={filteredPrice}
                     onChange={(e) => filterPrice(e.target.value ? parseInt(e.target.value) : undefined)}
-                    className="text-black"
+                    className="text-black w-full"
                 >
                     <option value="">Filter by price</option>
                     {priceFilterOptions.map(price => (
