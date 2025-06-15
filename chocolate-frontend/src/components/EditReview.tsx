@@ -19,7 +19,7 @@ export const EditReview = () => {
         queryKey: ["getSpecificReview"],
         queryFn: () => getSpecificReview(id || ""),
         retry: false,
-        enabled: !!id
+        enabled: Boolean(id)
     });
 
     useEffect(() => {

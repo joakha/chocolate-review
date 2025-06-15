@@ -78,10 +78,19 @@ const findReviews = async (options: FindOptions): Promise<ReviewSearch> => {
     return response.json();
 }
 
+const getReviewNoLogin = async (id: string): Promise<Review> => {
+    const response = await fetch(`${BACKEND_URL}/api/find-reviews/${id}`);
+
+    if (!response.ok) throw new Error("Error getting review!");
+
+    return response.json();
+}
+
 export {
     createReview,
     getUserReviews,
     getSpecificReview,
     updateReview,
-    findReviews
+    findReviews,
+    getReviewNoLogin
 }

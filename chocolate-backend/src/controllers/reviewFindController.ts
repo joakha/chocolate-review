@@ -1,6 +1,20 @@
 import { Request, Response } from "express"
 import ReviewModel from "../mongodb/review";
 import { ReviewSearch } from "../types/types";
+import { validationResult } from "express-validator";
+
+const findReviewById = async (req: Request, res: Response) => {
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) return res.status(400).json({ message: validationErrors.array() });
+    
+    const id = req.params.id;
+    try {
+        const chocolateReview = await ReviewModel.findOne({ _id: id });
+        return res.json(chocolateReview);
+    } catch (error) {
+        res.status(500).json({ message: "Error getting review!" });
+    }
+}
 
 const findReviews = async (req: Request, res: Response) => {
 
@@ -83,5 +97,6 @@ const findReviews = async (req: Request, res: Response) => {
 };
 
 export {
-    findReviews
+    findReviews,
+    findReviewById
 }

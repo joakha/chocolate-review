@@ -1,4 +1,4 @@
-import { body } from "express-validator"
+import { body, param } from "express-validator"
 
 const validateCreateReview = [
     body("title").notEmpty().withMessage("Review title is required!"),
@@ -22,6 +22,11 @@ const validateCreateReview = [
         .withMessage("Review price required and must be numeric!"),
 ];
 
+const validateReviewGet = [
+    param("id").notEmpty().withMessage("ID must be a query param")
+]
+
 export {
-    validateCreateReview
+    validateCreateReview,
+    validateReviewGet
 }
