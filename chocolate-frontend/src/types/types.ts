@@ -52,6 +52,15 @@ type ReviewFormProps = {
     review?: Review
 }
 
+//comment from types
+type CommentFormType = {
+    comment: string
+}
+
+type CommentFormProps = {
+    reviewId: string
+}
+
 //types for FindContext
 type findContextType = {
     title: string,
@@ -101,5 +110,7 @@ export type {
     findContextType,
     FindOptions,
     PaginationProps,
-    FilterProps
+    FilterProps,
+    CommentFormType,
+    CommentFormProps
 }
