@@ -8,7 +8,7 @@ import { Review } from "../../../chocolate-backend/src/types/types"
 
 const FindCard = ({ review }: { review: Review }) => {
     return (
-        <div className="bg-chocolate-dark rounded-lg p-5 mb-10 gap-10 flex flex-col">
+        <div className="bg-chocolate-dark rounded-lg p-5 gap-10 flex flex-col">
             <div className="grid grid-cols-1 xl:grid-cols-[3fr_2fr] gap-10">
                 <div className="grid grid-rows-[1fr_1fr_1fr_2fr] gap-5">
                     <Link to={`/full-review/${review._id}`} className="text-2xl text-white font-bold flex items-center cursor-pointer">
@@ -61,7 +61,7 @@ const FindCard = ({ review }: { review: Review }) => {
                     </div>
                 </div>
 
-                <div className="w-full h-[300px]">
+                <div className="w-full h-full">
                     <img
                         className="w-full h-full object-cover object-center"
                         src={review.pictureStrings[0]}
