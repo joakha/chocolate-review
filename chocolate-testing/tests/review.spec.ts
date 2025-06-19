@@ -68,4 +68,13 @@ test("User should be able to edit their reviews", async ({ page }) => {
     await page.locator('[name=title]').fill("Trying out some chocolate");
     await page.getByRole("button", { name: "Create Review" }).click();
     await expect(page.getByText("Trying out some chocolate")).toBeVisible();
-})
+});
+
+test("Review page displays correctly", async ({ page }) => {
+    await page.goto(FRONTEND_URL);
+    await page.getByPlaceholder("Title...").fill("Is marabou");
+    await page.getByRole("button", { name: "Find" }).click();
+    await page.getByText("Is Marabou good?").click();
+    await expect(page).toHaveURL(/full-review/);
+    await expect(page.getByRole("button", { name: "Save" })).toBeVisible();
+});
