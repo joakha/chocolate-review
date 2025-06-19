@@ -5,8 +5,14 @@ const CommentForm = ({ reviewId }: CommentFormProps) => {
 
     const { register, formState: { errors }, handleSubmit } = useForm<CommentFormType>();
 
+    console.log(reviewId)
+
+    const submitComment = handleSubmit(commentFormData => {
+        console.log(commentFormData);
+    })
+
     return (
-        <form className="flex flex-col gap-4">
+        <form onSubmit={submitComment} className="flex flex-col gap-4">
             <div>
                 <label htmlFor="comment" className="text-chocolate-light text-2xl font-bold">Write a Comment</label>
                 <textarea
