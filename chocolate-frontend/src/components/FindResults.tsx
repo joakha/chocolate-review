@@ -3,7 +3,7 @@ import { useFind } from "../hooks/useFind";
 import { findReviews } from "../api/review";
 import { ChangeEvent, useState } from "react";
 import FindCard from "./FindCard";
-import FindResultsPagination from "./FindResultsPagination";
+import PaginationRow from "./PaginationRow";
 import { Filters } from "./Filters";
 
 const FindResults = () => {
@@ -34,7 +34,6 @@ const FindResults = () => {
                 : prevFilteredFlavors.filter(arrayFlavor => arrayFlavor !== flavor)
         );
     };
-
 
     const options = {
         title: find.title,
@@ -75,7 +74,7 @@ const FindResults = () => {
                     />
                 ))}
                 <div>
-                    <FindResultsPagination
+                    <PaginationRow
                         pageTotal={reviewsFindData?.pagination.pageTotal || 1}
                         selectedPage={reviewsFindData?.pagination.selectedPage || 1}
                         paginationChange={(selectedPage) => setSelectedPage(selectedPage)}

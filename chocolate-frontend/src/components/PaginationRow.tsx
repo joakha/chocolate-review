@@ -9,7 +9,7 @@ const FindResultsPagination = ({ pageTotal, paginationChange, selectedPage }: Pa
     }
 
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center text-white'>
             <ul className='flex gap-5'>
                 {paginationNumbers.map((number) => (
                     <li key={number} className={`w-[50px] h-[50px] rounded-full flex justify-center ${selectedPage === number ? "bg-chocolate-milk" : "bg-chocolate-dark"}`}>

@@ -9,6 +9,7 @@ import { v2 as cloudinary } from "cloudinary"
 import reviewRouter from "./routes/reviewRouter";
 import { Request, Response } from "express";
 import reviewFindRouter from "./routes/reviewFindRouter";
+import commentRouter from "./routes/commentRouter";
 
 //tell typescript it's ok to attach appUserId to requests
 declare global {
@@ -58,7 +59,11 @@ chocolateBackendApp.use("/api/appUsers", appUserRouter);
 //routes for review operations
 chocolateBackendApp.use("/api/reviews", reviewRouter);
 
+//router for finding reviews and pagination
 chocolateBackendApp.use("/api/find-reviews", reviewFindRouter);
+
+//route for comment operations
+chocolateBackendApp.use("/api/comments", commentRouter);
 
 //route all unmatched requests
 chocolateBackendApp.get('/{*any}', (req: Request, res: Response) => {

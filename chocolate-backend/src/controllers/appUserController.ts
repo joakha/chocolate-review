@@ -86,9 +86,20 @@ const verifyJWT = async (req: Request, res: Response) => {
     return res.status(200).send({ appUserId: req.appUserId })
 }
 
+const getUserInfo = async (req: Request, res: Response) => {
+    try {
+        const appUser = await AppUserModel.findOne({ _id: req.appUserId }).select("-password");
+        if (!appUser) return res.status(400).json({message: "appUser not found!"});
+        return res.status(200).json(appUser);
+    } catch (error) {
+        res.status(500).json({ message: "server error!" });
+    }
+}
+
 export {
     registerAppUser,
     loginAppUser,
     verifyJWT,
-    logoutUser
+    logoutUser,
+    getUserInfo
 }

@@ -1,3 +1,5 @@
+import { Types } from "mongoose"
+
 type AppUser = {
     _id: string,
     username: string,
@@ -28,8 +30,25 @@ type ReviewSearch = {
     }
 }
 
+type Comment = {
+    content: string,
+    commenterName: string,
+    reviewId: Types.ObjectId
+}
+
+type CommentSearch = {
+    data: Comment[],
+    pagination: {
+        commentTotal: number,
+        selectedPage: number,
+        pageTotal: number
+    }
+}
+
 export type {
     AppUser,
     Review,
-    ReviewSearch
+    ReviewSearch,
+    Comment,
+    CommentSearch
 }

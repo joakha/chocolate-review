@@ -1,5 +1,6 @@
 import { RegisterInfoType, LoginInfoType } from "../types/types"
 import { BACKEND_URL } from "../constants";
+import { AppUser } from "../../../chocolate-backend/src/types/types"
 
 const registerUser = async (registerInfo: RegisterInfoType) => {
     const responseHeaders = {
@@ -46,6 +47,18 @@ const logoutUser = async () => {
     if (!response.ok) throw new Error("Error logging out");
 }
 
+const getAppUserInfo = async (): Promise<AppUser> => {
+    const response = await fetch(`${BACKEND_URL}/api/appUsers/get-user-info`, {
+        credentials: "include"
+    })
+
+    const responseBody = await response.json();
+
+    if (!response.ok) throw new Error(responseBody.message);
+
+    return responseBody;
+}
+
 const verifyJWT = async () => {
     const response = await fetch(`${BACKEND_URL}/api/appUsers/verify-jwt`, {
         credentials: "include",
@@ -60,5 +73,6 @@ export {
     registerUser,
     verifyJWT,
     loginUser,
-    logoutUser
+    logoutUser,
+    getAppUserInfo
 }

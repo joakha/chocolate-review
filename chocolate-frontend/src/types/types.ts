@@ -54,7 +54,9 @@ type ReviewFormProps = {
 
 //comment from types
 type CommentFormType = {
-    comment: string
+    content: string,
+    commenterName: string
+    reviewId: string
 }
 
 type CommentFormProps = {
