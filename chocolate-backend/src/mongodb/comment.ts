@@ -1,9 +1,9 @@
-import { model, Schema, Types } from "mongoose";
+import { model, Schema } from "mongoose";
 
 type Comment = {
     content: string,
     commenterName: string,
-    reviewId: Types.ObjectId
+    reviewId: string
 }
 
 const CommentSchema = new Schema<Comment>({
@@ -16,7 +16,7 @@ const CommentSchema = new Schema<Comment>({
         required: true
     },
     reviewId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "Review",
         required: true
     }
