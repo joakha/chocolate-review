@@ -16,6 +16,7 @@ const FindResults = () => {
     const [sort, setSort] = useState<string>()
 
     const filterRatings = (e: ChangeEvent<HTMLInputElement>) => {
+        setSelectedPage(1);
         const rating = e.target.value;
 
         setFilteredRatings(prevFilteredRatings =>
@@ -26,6 +27,7 @@ const FindResults = () => {
     };
 
     const filterFlavors = (e: ChangeEvent<HTMLInputElement>) => {
+        setSelectedPage(1);
         const flavor = e.target.value;
 
         setFilteredFlavors(prevFilteredFlavors =>
