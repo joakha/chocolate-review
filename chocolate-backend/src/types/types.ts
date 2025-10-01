@@ -1,4 +1,4 @@
-import { Types } from "mongoose"
+import { Comment } from "../mongodb/comment"
 
 type AppUser = {
     _id: string,
@@ -28,12 +28,6 @@ type ReviewSearch = {
         selectedPage: number,
         pageTotal: number
     }
-}
-
-type Comment = {
-    content: string,
-    commenterName: string,
-    reviewId: Types.ObjectId
 }
 
 type CommentSearch = {

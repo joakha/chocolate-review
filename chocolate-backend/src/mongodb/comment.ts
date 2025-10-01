@@ -1,5 +1,10 @@
 import { model, Schema, Types } from "mongoose";
-import { Comment } from "../types/types";
+
+type Comment = {
+    content: string,
+    commenterName: string,
+    reviewId: Types.ObjectId
+}
 
 const CommentSchema = new Schema<Comment>({
     content: {
@@ -20,3 +25,7 @@ const CommentSchema = new Schema<Comment>({
 const CommentModel = model<Comment>("Comment", CommentSchema);
 
 export default CommentModel
+
+export type {
+    Comment
+}
