@@ -8,13 +8,13 @@ to give feedback or just to say hello.
 Built with TypeScript, React, Express, MongoDB, Playwright for writing tests.
 
 ## Deployment
-The application is deployed and running live on [Render hosting service](https://chocolate-review-joakha.onrender.com)
+The application is deployed and running live on [Render hosting service](https://chocolate-review-joakha.onrender.com).
 
 ## Application Screenshots
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="./pictures/chocolate-1.jpeg" style="max-width:45%"  />
-  <img src="./pictures/chocolate-2.jpeg" style="max-width:45%"  />
-  <img src="./pictures/chocolate-3.jpeg" style="max-width:45%" />
+  <img src="./pictures/chocolate-1.jpeg" style="width:45%"  />
+  <img src="./pictures/chocolate-2.jpeg" style="width:45%"  />
+  <img src="./pictures/chocolate-3.jpeg" style="width:45%" />
 </div>
 
 ## Features
