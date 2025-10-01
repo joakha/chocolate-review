@@ -28,7 +28,7 @@ The application is deployed and running live on [Render hosting service](https:/
 
 Tests for the application were written using the Playwright framework.
 
-Testing covers the following ue cases:
+Testing covers the following use cases:
 
 - Registration and logging in
 
