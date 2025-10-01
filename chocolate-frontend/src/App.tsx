@@ -26,7 +26,7 @@ function App() {
       </div>
       <div className='container mx-auto py-12 flex-1'>
         <Routes>
-          <Route path='/' element={<p>Main content</p>} />
+          <Route path='/' element={<p className='text-center text-2xl'>Welcome to the application. You can register, login or find reviews with the toolbar.</p>} />
           <Route path='/register' element={<RegisterUser />} />
           <Route path='/login' element={<LoginUser />} />
           <Route path='/find-reviews' element={<FindResults />} />
