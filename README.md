@@ -13,8 +13,8 @@ The application is deployed and running live on [Render hosting service](https:/
 ## Application Screenshots
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="./pictures/chocolate-1.jpeg" style="max-width:45%"  />
-  <img src="./pictures/chocolate-1.jpeg" style="max-width:45%"  />
-  <img src="./pictures/chocolate-1.jpeg" style="max-width:45%" />
+  <img src="./pictures/chocolate-2.jpeg" style="max-width:45%"  />
+  <img src="./pictures/chocolate-3.jpeg" style="max-width:45%" />
 </div>
 
 ## Features
