@@ -30,6 +30,7 @@ type ReviewSearch = {
     }
 }
 
+//dont change this
 type Comment = {
     content: string,
     commenterName: string,
