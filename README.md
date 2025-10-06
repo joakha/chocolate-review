@@ -18,7 +18,7 @@ The application is deployed and running live on [Render hosting service](https:/
 </div>
 
 ## Features
-- **Register and Login**: An account can be registered with email and password. A JWT token stored in a HTTP cookie is used to authenticate the user.
+- **Register and Login**: An account can be registered with email and password. A JWT stored in a HTTP cookie is used to authenticate the user.
 - **Finding reviews**: Users can find reviews created by others using many filters and sorting option
 - **Review Creation**: Users can create, edit and delete their own reviews.
 - **Review Comments**: Logged in users can comment on reviews created by others.
@@ -28,7 +28,7 @@ The application is deployed and running live on [Render hosting service](https:/
 
 Tests for the application were written using the Playwright framework.
 
-Testing covers the following ue cases:
+Testing covers the following use cases:
 
 - Registration and logging in
 
