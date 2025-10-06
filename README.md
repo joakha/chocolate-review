@@ -8,7 +8,7 @@ to give feedback or just to say hello.
 Built with TypeScript, React, Express, MongoDB, Playwright for writing tests.
 
 ## Deployment
-The application is deployed and running live on [Render hosting service](https://chocolate-review-joakha.onrender.com).
+The application is deployed and running live on [Render hosting service](https://chocolate-review-joakha.onrender.com/find-reviews).
 
 ## Application Screenshots
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
