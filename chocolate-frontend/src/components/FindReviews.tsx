@@ -24,6 +24,13 @@ const FindReviews = () => {
         navigate("/find-reviews");
     }
 
+    const resetCriteria = () => {
+        setTitle("");
+        setChocolate("");
+        setEditedAt(new Date());
+        find.saveFindCriteria(title, chocolate, editedAt);
+    }
+
     return (
         <form
             onSubmit={submitCriteria}
@@ -66,7 +73,9 @@ const FindReviews = () => {
                 >
                     Find
                 </button>
-                <button className='w-1/3 bg-chocolate-milk text-white h-full p-2 font-bold rounded-xl text-md hover:bg-chocolate-white hover:text-chocolate-milk'
+                <button
+                    className='w-1/3 bg-chocolate-milk text-white h-full p-2 font-bold rounded-xl text-md hover:bg-chocolate-white hover:text-chocolate-milk'
+                    onClick={resetCriteria}
                 >
                     Reset
                 </button>

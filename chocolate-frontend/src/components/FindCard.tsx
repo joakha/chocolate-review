@@ -16,15 +16,15 @@ const FindCard = ({ review }: { review: Review }) => {
                     </Link>
 
                     <div className="text-white flex items-center">
-                        Updated: <span className="text-chocolate-white">{getFormattedFinnishDate(review.editedAt)}</span>
+                        Updated: <span className="text-chocolate-white ml-2">{getFormattedFinnishDate(review.editedAt)}</span>
                     </div>
 
                     <div className="grid grid-cols-4 gap-2">
-                        <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 items-center flex gap-2">
+                        <div className="bg-chocolate-milk text-chocolate-white flex flex-col rounded-lg p-3 items-center justify-center  gap-2">
                             <GiChocolateBar /> {review.chocolate}
                         </div>
 
-                        <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 flex flex-col gap-2 items-center">
+                        <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 flex flex-col gap-2 justify-center items-center">
                             {review.recommended ? (
                                 <>
                                     <FaRegThumbsUp />
@@ -38,7 +38,7 @@ const FindCard = ({ review }: { review: Review }) => {
                             )}
                         </div>
 
-                        <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 flex flex-col items-center gap-2">
+                        <div className="bg-chocolate-milk text-chocolate-white rounded-lg p-3 flex flex-col justify-center items-center gap-2">
                             {/* Array needs to be spread so values are actually undefined and so that map works */}
                             <div className="flex">
                                 {[...Array(5)].map((_, index) => (
@@ -51,7 +51,7 @@ const FindCard = ({ review }: { review: Review }) => {
                             <div>{scoreStrings[review.rating]}</div>
                         </div>
 
-                        <div className="bg-chocolate-milk text-chocolate-white flex-col rounded-lg p-3 items-center flex gap-2">
+                        <div className="bg-chocolate-milk text-chocolate-white flex-col rounded-lg p-3 justify-center items-center flex gap-2">
                             <IoPricetagsOutline /> {review.price}€
                         </div>
                     </div>
